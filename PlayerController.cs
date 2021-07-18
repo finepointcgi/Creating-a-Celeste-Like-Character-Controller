@@ -237,15 +237,17 @@ public class PlayerController : KinematicBody2D
 
     public void TakeDamage(){
         GD.Print("Player Has Taken Damage");
-        Health -= 1;
-        GD.Print("Current Health " + Health);
-        velocity = MoveAndSlide(new Vector2(500f * -facingDirection, -80), Vector2.Up);
-        isTakingDamage = true;
-        animatedSprite.Play("TakeDamage");
-        if(Health <= 0){
-            Health = 0;
-            animatedSprite.Play("Death");
-            GD.Print("Player Has Died!");
+        if(Health > 0){
+            Health -= 1;
+            GD.Print("Current Health " + Health);
+            velocity = MoveAndSlide(new Vector2(500f * -facingDirection, -80), Vector2.Up);
+            isTakingDamage = true;
+            animatedSprite.Play("TakeDamage");
+            if(Health <= 0){
+                Health = 0;
+                animatedSprite.Play("Death");
+                GD.Print("Player Has Died!");
+            }
         }
     }
 
