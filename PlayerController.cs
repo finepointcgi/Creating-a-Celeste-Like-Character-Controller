@@ -40,18 +40,31 @@ public class PlayerController : KinematicBody2D
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(float delta)
+    
+    public override void _PhysicsProcess(float delta)
     {
-        if(Health > 0){
+        if(Health > 0 && GameManager.GlobalGameManager.GamePaused != true){
             if (!isDashing && !isWallJumping)
             {
                 processMovement(delta);
             }
+            if(Input.IsActionJustPressed("ui_accept")){
+                if(GetNode<RayCast2D>("RaycastLeft").IsColliding()){
+                    Node obj = (Node)GetNode<RayCast2D>("RaycastLeft").GetCollider();
+                    showNPCDialouge(obj);
+                }else if(GetNode<RayCast2D>("RaycastRight").IsColliding()){
+                    Node obj = (Node)GetNode<RayCast2D>("RaycastRight").GetCollider();
+                    showNPCDialouge(obj);
+                }
+            }
 
             if (IsOnFloor())
             {
-                if (Input.IsActionJustPressed("jump"))
+                if(GetNode<RayCast2D>("RaycastDown").IsColliding() && Input.IsActionPressed("ui_down") && Input.IsActionJustPressed("jump")){
+                    Position = new Vector2(Position.x, Position.y + 2);
+                }else if (Input.IsActionJustPressed("jump"))
                 {
+                    
                     velocity.y = -jumpHeight;
                     animatedSprite.Play("Jump");
                     isInAir = true;
@@ -92,6 +105,9 @@ public class PlayerController : KinematicBody2D
             else if (!isClimbing)
             {
                 velocity.y += gravity * delta;
+                if(velocity.y > gravity){
+                    velocity.y = gravity;
+                }
             }else {
                 climbTimer -= delta;
                 if(climbTimer <= 0){
@@ -104,8 +120,18 @@ public class PlayerController : KinematicBody2D
 
         MoveAndSlide(velocity, Vector2.Up);
         }
+        else{
+            animatedSprite.Play("Idle");
+        }
     }
 
+    private void showNPCDialouge(Node obj){
+         if(obj is NPC){
+            NPC npc = obj as NPC;
+            npc.setNPCDialouge();
+            InterfaceManager.dialougeManger.ShowDialougeElement();
+        }
+    }
     private void processClimb(float delta)
     {
         if (Input.IsActionPressed("climb") && (GetNode<RayCast2D>("RaycastLeft").IsColliding() || GetNode<RayCast2D>("RaycastRight").IsColliding() ||

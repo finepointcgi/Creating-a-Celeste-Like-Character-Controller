@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://ArcherHero/Final/Normal Attack.png" type="Texture" id=1]
 [ext_resource path="res://ArcherHero/Final/Idle and running.png" type="Texture" id=2]
@@ -7,9 +7,16 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ArcherEnemy.cs" type="Script" id=6]
 [ext_resource path="res://Arrow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://DialougeManger.cs" type="Script" id=8]
 [ext_resource path="res://platform_metroidvania asset pack v1.01/miscellaneous sprites/spikes.png" type="Texture" id=9]
+[ext_resource path="res://InterfaceManager.cs" type="Script" id=10]
 [ext_resource path="res://GameManager.cs" type="Script" id=11]
 [ext_resource path="res://RespawnPoint.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ArcherHero/Final/Idle and running_good.png" type="Texture" id=13]
+[ext_resource path="res://NPC.cs" type="Script" id=14]
+[ext_resource path="res://InterfaceSelection.tscn" type="PackedScene" id=15]
+[ext_resource path="res://platform_metroidvania asset pack v1.01/miscellaneous sprites/stone.png" type="Texture" id=16]
+[ext_resource path="res://Platform.cs" type="Script" id=17]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -143,77 +150,99 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 4/z_index = 0
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 1 )
+atlas = ExtResource( 2 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 64, 64 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 64, 64 )
+region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 1 )
-region = Rect2( 256, 0, 64, 64 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 1 )
-region = Rect2( 320, 0, 64, 64 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 1 )
-region = Rect2( 384, 0, 64, 64 )
+region = Rect2( 256, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 1 )
-region = Rect2( 448, 0, 64, 64 )
+region = Rect2( 320, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 64, 64, 64 )
+region = Rect2( 384, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 1 )
-region = Rect2( 64, 64, 64, 64 )
+region = Rect2( 448, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 1 )
-region = Rect2( 128, 64, 64, 64 )
+region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 64, 64 )
+atlas = ExtResource( 1 )
+region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 64, 64 )
+atlas = ExtResource( 1 )
+region = Rect2( 128, 64, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=21]
 animations = [ {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
 "name": "Drawback",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
 "loop": true,
 "name": "Shoot",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 19 ), SubResource( 20 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 2.0
 } ]
 
 [sub_resource type="CircleShape2D" id=22]
 radius = 161.133
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 5.36899, 9.77734 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 13 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=26]
+animations = [ {
+"frames": [ SubResource( 24 ), SubResource( 25 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 8.13271, 5.3509 )
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource( 11 )
@@ -224,8 +253,6 @@ tile_set = SubResource( 7 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 262144, 2, 0, 262188, 3, 0, 327680, 2, 0, 327691, 1, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, 327703, 0, 0, 327704, 0, 0, 327705, 0, 0, 327706, 0, 0, 327707, 0, 0, 327708, 0, 0, 327709, 0, 0, 327724, 3, 0, 393216, 2, 0, 393224, 2, 0, 393227, 3, 0, 393245, 2, 0, 393260, 3, 0, 458752, 2, 0, 458760, 2, 0, 458763, 3, 0, 458781, 2, 0, 458796, 3, 0, 524288, 2, 0, 524296, 2, 0, 524299, 3, 0, 524317, 2, 0, 524332, 3, 0, 589824, 2, 0, 589832, 2, 0, 589835, 3, 0, 589853, 2, 0, 589868, 3, 0, 655360, 2, 0, 655371, 3, 0, 655389, 2, 0, 655391, 2, 0, 655394, 3, 0, 655398, 3, 0, 655399, 0, 0, 655400, 0, 0, 655401, 0, 0, 655402, 0, 0, 655403, 0, 0, 655404, 0, 0, 720896, 2, 0, 720907, 3, 0, 720925, 2, 0, 720927, 2, 0, 720930, 3, 0, 720934, 3, 0, 786432, 2, 0, 786443, 3, 0, 786461, 2, 0, 786463, 2, 0, 786466, 3, 0, 786470, 3, 0, 851968, 2, 0, 851979, 3, 0, 851997, 2, 0, 851999, 2, 0, 852002, 3, 0, 852005, 3, 0, 852006, 3, 0, 917504, 2, 0, 917515, 3, 0, 917533, 2, 0, 917535, 2, 0, 917538, 3, 0, 917541, 3, 0, 983040, 2, 0, 983051, 3, 0, 983069, 0, 0, 983070, 0, 0, 983071, 0, 0, 983072, 0, 0, 983073, 0, 0, 983074, 0, 0, 983075, 0, 0, 983076, 0, 0, 983077, 3, 0, 1048576, 2, 0, 1048577, 0, 0, 1048578, 0, 0, 1048579, 0, 0, 1048580, 0, 0, 1048581, 0, 0, 1048582, 0, 0, 1048583, 0, 0, 1048584, 0, 0, 1048585, 0, 0, 1048586, 0, 0, 1048587, 1, 0 )
-
-[node name="Player" parent="." instance=ExtResource( 5 )]
 
 [node name="SpikeTrap" parent="." instance=ExtResource( 4 )]
 
@@ -254,7 +281,148 @@ shape = SubResource( 22 )
 [node name="ProjectileSpawn" type="Position2D" parent="ArcherEnemy"]
 position = Vector2( 3.587, -3.019 )
 
-[connection signal="Death" from="Player" to="." method="_on_Player_Death"]
+[node name="InterfaceManager" type="CanvasLayer" parent="."]
+script = ExtResource( 10 )
+
+[node name="DialougeManger" type="Control" parent="InterfaceManager"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -11.0
+margin_right = -11.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+InterfaceSelectableObject = ExtResource( 15 )
+
+[node name="Popup" type="Popup" parent="InterfaceManager/DialougeManger"]
+anchor_top = 0.813
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.199982
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="InterfaceManager/DialougeManger/Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="InterfaceManager/DialougeManger/Popup"]
+anchor_right = 1.0
+anchor_bottom = 0.184
+margin_left = 12.0
+margin_top = 5.0
+margin_bottom = -0.0240021
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Test NPC Name"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InterfaceManager/DialougeManger/Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 13.0
+margin_top = 23.0
+margin_right = -8.0
+margin_bottom = -38.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "lkajfa;lsdkjf;laksdjf;as lkajfa;lsdkjf;laksdjf;as lkajfa;lsdkjf;laksdjf;as lkajfa;lsdkjf;laksdjf;as  lkajfa;lsdkjf;laksdjf;as lkajfa;lsdkjf;laksdjf;as lkajfa;lsdkjf;laksdjf;as lkajfa;lsdkjf;laksdjf;as lkajfa;lsdkjf;laksdjf;as "
+scroll_following = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InterfaceManager/DialougeManger/Popup"]
+anchor_top = 0.787
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 13.0
+margin_top = -0.0320053
+margin_right = -16.0
+margin_bottom = -6.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NPC" type="KinematicBody2D" parent="."]
+position = Vector2( 136.278, 84.4802 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
+shape = SubResource( 23 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="NPC"]
+position = Vector2( -0.264832, -1.05947 )
+scale = Vector2( 0.490962, 0.490962 )
+frames = SubResource( 26 )
+animation = "Idle"
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+
+[node name="Platform" type="Node2D" parent="."]
+position = Vector2( 85.3098, 103.293 )
+script = ExtResource( 17 )
+
+[node name="PlatformObject" type="KinematicBody2D" parent="Platform"]
+scale = Vector2( 1.797, 0.827 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/PlatformObject"]
+shape = SubResource( 27 )
+one_way_collision = true
+
+[node name="Sprite" type="Sprite" parent="Platform/PlatformObject"]
+position = Vector2( 0, 0.0743237 )
+scale = Vector2( 1, 0.600501 )
+texture = ExtResource( 16 )
+
+[node name="Tween" type="Tween" parent="Platform/PlatformObject"]
+
+[node name="MovementLocations" type="Node2D" parent="Platform"]
+
+[node name="Loc1" type="Position2D" parent="Platform/MovementLocations"]
+
+[node name="Loc2" type="Position2D" parent="Platform/MovementLocations"]
+position = Vector2( 3.92938, 71.3066 )
+
+[node name="Loc3" type="Position2D" parent="Platform/MovementLocations"]
+position = Vector2( -34.2996, 110.694 )
+
+[node name="Loc4" type="Position2D" parent="Platform/MovementLocations"]
+position = Vector2( 50.5585, 108.467 )
+
+[node name="Loc5" type="Position2D" parent="Platform/MovementLocations"]
+position = Vector2( 4.07317, 71.1869 )
+
+[node name="Platform2" type="Node2D" parent="."]
+position = Vector2( 181.576, -16.197 )
+script = ExtResource( 17 )
+
+[node name="PlatformObject" type="KinematicBody2D" parent="Platform2"]
+scale = Vector2( 1.797, 0.827 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2/PlatformObject"]
+shape = SubResource( 27 )
+one_way_collision = true
+
+[node name="Sprite" type="Sprite" parent="Platform2/PlatformObject"]
+position = Vector2( 0, 0.0743237 )
+scale = Vector2( 1, 0.600501 )
+texture = ExtResource( 16 )
+
+[node name="Tween" type="Tween" parent="Platform2/PlatformObject"]
+
+[node name="MovementLocations" type="Node2D" parent="Platform2"]
+
+[node name="Loc1" type="Position2D" parent="Platform2/MovementLocations"]
+
+[node name="Loc2" type="Position2D" parent="Platform2/MovementLocations"]
+position = Vector2( -175.383, 345.166 )
+
 [connection signal="animation_finished" from="ArcherEnemy/AnimatedSprite" to="ArcherEnemy" method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="ArcherEnemy/Detection Radius" to="ArcherEnemy" method="_on_Detection_Radius_body_entered"]
 [connection signal="body_exited" from="ArcherEnemy/Detection Radius" to="ArcherEnemy" method="_on_Detection_Radius_body_exited"]
+[connection signal="Death" from="Player" to="." method="_on_Player_Death"]
+[connection signal="tween_completed" from="Platform/PlatformObject/Tween" to="Platform" method="_on_Tween_tween_completed"]
+[connection signal="tween_completed" from="Platform2/PlatformObject/Tween" to="Platform2" method="_on_Tween_tween_completed"]
