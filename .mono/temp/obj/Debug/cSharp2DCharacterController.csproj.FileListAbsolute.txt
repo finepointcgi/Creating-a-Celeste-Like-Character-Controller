@@ -8,9 +8,10 @@ C:\Users\animeman\Documents\cSharp2DCharacterController\.mono\temp\obj\Debug\cSh
 C:\Users\animeman\Documents\cSharp2DCharacterController\.mono\temp\obj\Debug\cSharp2DCharacterController.pdb
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\bin\Debug\cSharp2DCharacterController.dll
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\bin\Debug\cSharp2DCharacterController.pdb
-C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.csprojAssemblyReference.cache
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.AssemblyInfoInputs.cache
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.AssemblyInfo.cs
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.csproj.CoreCompileInputs.cache
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.dll
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.pdb
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.csproj.AssemblyReference.cache
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.GeneratedMSBuildEditorConfig.editorconfig
