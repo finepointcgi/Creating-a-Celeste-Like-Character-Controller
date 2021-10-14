@@ -27,22 +27,36 @@ public class PlayerController : KinematicBody2D
     public PackedScene GhostPlayerInstance;
     private AnimatedSprite animatedSprite;
     
-    public int Health = 3;
-    private int facingDirection = 0;
+    public float Health = 3;
+    public float MaxHealth = 3;
+    private Vector2 facingDirection = new Vector2(0,0);
     private bool isTakingDamage = false;
     [Signal]
     public delegate void Death();
+    private AnimationPlayer animationPlayer;
+    [Export]
+    public bool canAttack = true;
+    [Export]
+    public bool isAttacking = false;
 
+    private float stamina = 100f;
+    private float maxStamina = 100f;
+    private float staminaTimerReset = 2f;
+    private float staminaTimer = 2f;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        InterfaceManager.UpdateHealth(MaxHealth,Health);
+
     }
 
     //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     
     public override void _PhysicsProcess(float delta)
     {
+        InterfaceManager.UpdateStamina(maxStamina, stamina);
         if(Health > 0 && GameManager.GlobalGameManager.GamePaused != true){
             if (!isDashing && !isWallJumping)
             {
@@ -51,11 +65,18 @@ public class PlayerController : KinematicBody2D
             if(Input.IsActionJustPressed("ui_accept")){
                 if(GetNode<RayCast2D>("RaycastLeft").IsColliding()){
                     Node obj = (Node)GetNode<RayCast2D>("RaycastLeft").GetCollider();
-                    showNPCDialouge(obj);
+                    InteractWithItem(obj);
                 }else if(GetNode<RayCast2D>("RaycastRight").IsColliding()){
                     Node obj = (Node)GetNode<RayCast2D>("RaycastRight").GetCollider();
-                    showNPCDialouge(obj);
+                    InteractWithItem(obj);
+                }else if(GetNode<RayCast2D>("ItemPickupLeft").IsColliding()){
+                    Node obj = (Node)GetNode<RayCast2D>("ItemPickupLeft").GetCollider();
+                    InteractWithItem(obj);
+                }else if(GetNode<RayCast2D>("ItemPickupRight").IsColliding()){
+                    Node obj = (Node)GetNode<RayCast2D>("ItemPickupRight").GetCollider();
+                    InteractWithItem(obj);
                 }
+                
             }
 
             if (IsOnFloor())
@@ -66,7 +87,8 @@ public class PlayerController : KinematicBody2D
                 {
                     
                     velocity.y = -jumpHeight;
-                    animatedSprite.Play("Jump");
+                    
+                       animationPlayer.Play("Jump");
                     isInAir = true;
                 }else{
                     isInAir = false;
@@ -83,10 +105,6 @@ public class PlayerController : KinematicBody2D
             if(!IsOnFloor()){
                 processWallJump(delta);
             }
-            if (isDashAvailable)
-            {
-                processDash(delta);
-            }
 
             if (isDashing)
             {
@@ -102,12 +120,20 @@ public class PlayerController : KinematicBody2D
                     velocity = new Vector2(0, 0);
                 }
             }
-            else if (!isClimbing)
+            else if (!isClimbing && !isDashing)
             {
                 velocity.y += gravity * delta;
                 if(velocity.y > gravity){
                     velocity.y = gravity;
                 }
+                if(stamina <= 100 && staminaTimer <= 0){
+                    stamina += delta * 1;
+                    GD.Print(stamina);
+                }else if(stamina != 100){
+                    staminaTimer -= delta;
+                    GD.Print(staminaTimer);
+                }
+
             }else {
                 climbTimer -= delta;
                 if(climbTimer <= 0){
@@ -116,21 +142,36 @@ public class PlayerController : KinematicBody2D
                     climbTimer = climbTimerReset;
                 }
             }
-
-
-        MoveAndSlide(velocity, Vector2.Up);
-        }
-        else{
-            animatedSprite.Play("Idle");
+                if(Input.IsActionJustPressed("attack")){
+                    attack();
+                }
+            
+        //GD.Print(velocity);
+        
+        MoveAndSlide(velocity,Vector2.Up);
         }
     }
 
-    private void showNPCDialouge(Node obj){
+    private void attack(){
+        animationPlayer.Play("Attack");
+        canAttack = false;
+        isAttacking = true;
+    }
+    private void InteractWithItem(Node obj){
+         
          if(obj is NPC){
-            NPC npc = obj as NPC;
-            npc.setNPCDialouge();
-            InterfaceManager.dialougeManger.ShowDialougeElement();
+            showNPCDialouge(obj);
+        }else if(obj is Potion){
+            Potion potion = obj as Potion;
+            potion.UseItem();
         }
+    }
+
+    private void showNPCDialouge(Node obj)
+    {
+        NPC npc = obj as NPC;
+        npc.setNPCDialouge();
+        InterfaceManager.dialougeManger.ShowDialougeElement();
     }
     private void processClimb(float delta)
     {
@@ -167,72 +208,57 @@ public class PlayerController : KinematicBody2D
 
     private void processMovement(float delta)
     {
-        facingDirection = 0;
+        facingDirection = new Vector2(0,0);
         if(!isTakingDamage){
             if (Input.IsActionPressed("ui_left"))
             {
-                facingDirection -= 1;
+                facingDirection.x -= 1;
                 animatedSprite.FlipH = true;
             }
             if (Input.IsActionPressed("ui_right"))
             {
-                facingDirection += 1;
+                facingDirection.x += 1;
                 animatedSprite.FlipH = false;
             }
+            if(Input.IsActionPressed("ui_up")){
+                facingDirection.y = -1;
+            }
+            if(Input.IsActionPressed("ui_down")){
+                facingDirection.y = 1;
+            }
+            if(Input.IsActionJustPressed("dash")){
+                if(isDashAvailable && stamina > 10){
+                    isDashing = true;
+                    dashTimer = dashTimerReset;
+                    isDashAvailable = false;
+                    UpdateStamina(-10);
+                    staminaTimer = staminaTimerReset;
+                }
+            }
         }
-        if (facingDirection != 0)
+        if (facingDirection.x != 0 || facingDirection.y != 0)
         {
-            velocity.x = Mathf.Lerp(velocity.x, facingDirection * speed, acceleration);
+            if(isDashing){
+                velocity.x = dashSpeed * facingDirection.x;
+                velocity.y = dashSpeed * facingDirection.y;
+            }else{
+                velocity.x = Mathf.Lerp(velocity.x, facingDirection.x * speed, acceleration);
+            }
             
             if(!isInAir)
-                animatedSprite.Play("Run");
+                animationPlayer.Play("Run");
         }
         else
         {
             velocity.x = Mathf.Lerp(velocity.x, 0, friction);
             if(velocity.x < 5 && velocity.x > -5){
-                if(!isInAir)
-                    animatedSprite.Play("Idle");
+                if(!isInAir && !isAttacking)
+                    animationPlayer.Play("Idle");
                 isTakingDamage = false;
             }
         }
     }
-    private void processDash(float delta)
-    {
-        if (Input.IsActionJustPressed("dash"))
-        {
-            if (Input.IsActionPressed("ui_left"))
-            {
-                velocity.x = -dashSpeed;
-                isDashing = true;
-            }
-            if (Input.IsActionPressed("ui_right"))
-            {
-                velocity.x = dashSpeed;
-                isDashing = true;
-            }
-            if (Input.IsActionPressed("ui_up"))
-            {
-                velocity.y = -dashSpeed;
-                isDashing = true;
-            }
-            if (Input.IsActionPressed("ui_right") && Input.IsActionPressed("ui_up"))
-            {
-                velocity.x = dashSpeed;
-                velocity.y = -dashSpeed;
-                isDashing = true;
-            }
-            if (Input.IsActionPressed("ui_left") && Input.IsActionPressed("ui_up"))
-            {
-                velocity.x = -dashSpeed;
-                velocity.y = -dashSpeed;
-                isDashing = true;
-            }
-
-            dashTimer = dashTimerReset;
-            isDashAvailable = false;
-        }
-    }
+    
     private void processWallJump(float delta)
     {
         if (Input.IsActionJustPressed("jump") && GetNode<RayCast2D>("RaycastLeft").IsColliding())
@@ -261,19 +287,36 @@ public class PlayerController : KinematicBody2D
         }
     }
 
-    public void TakeDamage(){
+    public async void TakeDamage(){
         GD.Print("Player Has Taken Damage");
+        
         if(Health > 0){
-            Health -= 1;
-            GD.Print("Current Health " + Health);
-            velocity = MoveAndSlide(new Vector2(500f * -facingDirection, -80), Vector2.Up);
             isTakingDamage = true;
+            Health -= 1;
             animatedSprite.Play("TakeDamage");
+            GD.Print("Current Health " + Health);
+            velocity = new Vector2(0,0);
+            //MoveAndSlide(velocity,Vector2.Up);
+            await ToSignal(GetTree(), "idle_frame");
+            velocity = new Vector2(500f * -facingDirection.x, -80);
+            GD.Print(velocity);
+            GD.Print("Play Animation");
+            InterfaceManager.UpdateHealth(MaxHealth,Health);
+            
             if(Health <= 0){
                 Health = 0;
                 animatedSprite.Play("Death");
                 GD.Print("Player Has Died!");
             }
+        }
+        
+        
+    }
+
+    private void _on_Punch_body_entered(object body){
+        if(body is NPC){
+            NPC npc = body as NPC;
+            npc.TakeDamage(1);
         }
     }
 
@@ -291,5 +334,13 @@ public class PlayerController : KinematicBody2D
         Health = 3;
     }
 
+    public void UpdateStamina(float funStamina){
+        stamina += funStamina;
+        if(stamina >= maxStamina){
+            stamina = maxStamina;
+        }else if(stamina <= 0){
+            stamina = 0;
+        }
+    }
 
 }

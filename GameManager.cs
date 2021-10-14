@@ -10,6 +10,7 @@ public class GameManager : Node2D
     [Export]
     public Position2D RespawnPoint;
     public static GameManager GlobalGameManager;
+    public static PlayerController player;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -18,6 +19,8 @@ public class GameManager : Node2D
         }else{
             QueueFree();
         }
+        player = GetNode<PlayerController>("Player");
+        
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,12 +30,12 @@ public class GameManager : Node2D
 //  }
 
     public void RespawnPlayer(){
-        PlayerController pc = GetNode<PlayerController>("Player");
-        pc.GlobalPosition = RespawnPoint.GlobalPosition;
-        pc.RespawnPlayer();
+        player.GlobalPosition = RespawnPoint.GlobalPosition;
+        player.RespawnPlayer();
     }
 
     private void _on_Player_Death(){
         RespawnPlayer();
+        InterfaceManager.UpdateHealth(player.MaxHealth, player.Health);
     }
 }

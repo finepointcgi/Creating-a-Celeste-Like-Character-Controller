@@ -8,26 +8,23 @@
     ".NETFramework,Version=v4.7.2": []
   },
   "packageFolders": {
-    "C:\\Users\\animeman\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\Mitch\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\animeman\\Documents\\Celest like tutorial\\cSharp2DCharacterController.csproj",
+      "projectUniqueName": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
       "projectName": "cSharp2DCharacterController",
-      "projectPath": "C:\\Users\\animeman\\Documents\\Celest like tutorial\\cSharp2DCharacterController.csproj",
-      "packagesPath": "C:\\Users\\animeman\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\animeman\\Documents\\Celest like tutorial\\.mono\\temp\\obj\\",
+      "projectPath": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
+      "packagesPath": "C:\\Users\\Mitch\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\animeman\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Mitch\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

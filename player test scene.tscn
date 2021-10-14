@@ -1,12 +1,9 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://ArcherHero/Final/Normal Attack.png" type="Texture" id=1]
-[ext_resource path="res://ArcherHero/Final/Idle and running.png" type="Texture" id=2]
+[ext_resource path="res://Potion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://platform_metroidvania asset pack v1.01/tiles and background_foreground/tileset.png" type="Texture" id=3]
 [ext_resource path="res://SpikeTrap.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ArcherEnemy.cs" type="Script" id=6]
-[ext_resource path="res://Arrow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://DialougeManger.cs" type="Script" id=8]
 [ext_resource path="res://platform_metroidvania asset pack v1.01/miscellaneous sprites/spikes.png" type="Texture" id=9]
 [ext_resource path="res://InterfaceManager.cs" type="Script" id=10]
@@ -17,7 +14,8 @@
 [ext_resource path="res://InterfaceSelection.tscn" type="PackedScene" id=15]
 [ext_resource path="res://platform_metroidvania asset pack v1.01/miscellaneous sprites/stone.png" type="Texture" id=16]
 [ext_resource path="res://Platform.cs" type="Script" id=17]
-[ext_resource path="res://SlimeEnemy.tscn" type="PackedScene" id=18]
+[ext_resource path="res://platform_metroidvania asset pack v1.01/enemies sprites/slime/slime_walk_anim_strip_15.png" type="Texture" id=18]
+[ext_resource path="res://Slime.cs" type="Script" id=19]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -150,99 +148,48 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 } ]
 4/z_index = 0
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 64, 64 )
+[sub_resource type="CircleShape2D" id=8]
+radius = 9.05976
 
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 64, 64 )
+[sub_resource type="Animation" id=9]
+resource_name = "move"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../RigidBody2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 14, 14, 14 ]
+}
 
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 64, 64 )
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 5.20764, 4.93722 )
 
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 1 )
-region = Rect2( 256, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 1 )
-region = Rect2( 320, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 1 )
-region = Rect2( 384, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 1 )
-region = Rect2( 448, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 1 )
-region = Rect2( 64, 64, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 1 )
-region = Rect2( 128, 64, 64, 64 )
-
-[sub_resource type="SpriteFrames" id=21]
-animations = [ {
-"frames": [ SubResource( 8 ), SubResource( 9 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 2.0
-}, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": true,
-"name": "Drawback",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
-"loop": true,
-"name": "Shoot",
-"speed": 5.0
-} ]
-
-[sub_resource type="CircleShape2D" id=22]
-radius = 161.133
-
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 5.36899, 9.77734 )
 
-[sub_resource type="AtlasTexture" id=24]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 13 )
 region = Rect2( 0, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=25]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 13 )
 region = Rect2( 64, 0, 64, 64 )
 
-[sub_resource type="SpriteFrames" id=26]
+[sub_resource type="SpriteFrames" id=14]
 animations = [ {
-"frames": [ SubResource( 24 ), SubResource( 25 ) ],
+"frames": [ SubResource( 12 ), SubResource( 13 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=27]
+[sub_resource type="RectangleShape2D" id=15]
 extents = Vector2( 8.13271, 5.3509 )
 
 [node name="GameManager" type="Node2D"]
@@ -261,33 +208,64 @@ tile_data = PoolIntArray( 262144, 2, 0, 262188, 3, 0, 327680, 2, 0, 327691, 1, 0
 
 [node name="RespawnPoint" parent="." instance=ExtResource( 12 )]
 
-[node name="ArcherEnemy" type="Node2D" parent="."]
-position = Vector2( 475.995, 67.3706 )
-script = ExtResource( 6 )
+[node name="RigidBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( -418.294, -83.2935 )
+collision_layer = 5
+collision_mask = 5
+script = ExtResource( 19 )
 __meta__ = {
 "_edit_group_": true
 }
-Arrow = ExtResource( 7 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="ArcherEnemy"]
-position = Vector2( 0.16687, 0.166851 )
-scale = Vector2( 0.489007, 0.489007 )
-frames = SubResource( 21 )
-animation = "Drawback"
-frame = 7
+[node name="Detection Radius" type="Area2D" parent="RigidBody2D"]
+position = Vector2( 696.18, 154.132 )
 
-[node name="Detection Radius" type="Area2D" parent="ArcherEnemy"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Detection Radius"]
+shape = SubResource( 8 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ArcherEnemy/Detection Radius"]
-shape = SubResource( 22 )
+[node name="ProjectileSpawn" type="Position2D" parent="RigidBody2D"]
+position = Vector2( 699.767, 151.113 )
 
-[node name="ProjectileSpawn" type="Position2D" parent="ArcherEnemy"]
-position = Vector2( 3.587, -3.019 )
+[node name="BottomLeft" type="RayCast2D" parent="RigidBody2D"]
+position = Vector2( 687.206, 152.644 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+
+[node name="BottomRight" type="RayCast2D" parent="RigidBody2D"]
+position = Vector2( 705.083, 151.9 )
+enabled = true
+cast_to = Vector2( 0, 20 )
+
+[node name="MidRight" type="RayCast2D" parent="RigidBody2D"]
+position = Vector2( 699.18, 154.132 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 5 )
+
+[node name="MidLeft" type="RayCast2D" parent="RigidBody2D"]
+position = Vector2( 693.18, 154.132 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RigidBody2D"]
+anims/move = SubResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="RigidBody2D"]
+position = Vector2( 696.18, 151.132 )
+scale = Vector2( 0.808277, 0.808277 )
+texture = ExtResource( 18 )
+hframes = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2( 696.18, 154.132 )
+shape = SubResource( 10 )
 
 [node name="InterfaceManager" type="CanvasLayer" parent="."]
 script = ExtResource( 10 )
 
 [node name="DialougeManger" type="Control" parent="InterfaceManager"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -11.0
@@ -344,6 +322,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Control" type="Control" parent="InterfaceManager"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="ProgressBar" parent="InterfaceManager/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -204.0
+margin_top = 21.0
+margin_right = -51.0
+margin_bottom = 42.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stamina" type="ProgressBar" parent="InterfaceManager/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -204.0
+margin_top = 54.1609
+margin_right = -51.0
+margin_bottom = 75.1609
+value = 90.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="NPC" type="KinematicBody2D" parent="."]
 position = Vector2( 136.278, 84.4802 )
 collision_layer = 2
@@ -354,15 +362,17 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
-shape = SubResource( 23 )
+shape = SubResource( 11 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="NPC"]
 position = Vector2( -0.264832, -1.05947 )
 scale = Vector2( 0.490962, 0.490962 )
-frames = SubResource( 26 )
+frames = SubResource( 14 )
 animation = "Idle"
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
+collision_layer = 1
+collision_mask = 1
 
 [node name="Platform" type="Node2D" parent="."]
 position = Vector2( 85.3098, 103.293 )
@@ -372,7 +382,7 @@ script = ExtResource( 17 )
 scale = Vector2( 1.797, 0.827 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/PlatformObject"]
-shape = SubResource( 27 )
+shape = SubResource( 15 )
 one_way_collision = true
 
 [node name="Sprite" type="Sprite" parent="Platform/PlatformObject"]
@@ -406,7 +416,7 @@ script = ExtResource( 17 )
 scale = Vector2( 1.797, 0.827 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2/PlatformObject"]
-shape = SubResource( 27 )
+shape = SubResource( 15 )
 one_way_collision = true
 
 [node name="Sprite" type="Sprite" parent="Platform2/PlatformObject"]
@@ -423,14 +433,9 @@ texture = ExtResource( 16 )
 [node name="Loc2" type="Position2D" parent="Platform2/MovementLocations"]
 position = Vector2( -175.383, 345.166 )
 
-[node name="SlimeEnemy" parent="." instance=ExtResource( 18 )]
-position = Vector2( 98.4443, 236.979 )
-collision_layer = 2
-collision_mask = 2
+[node name="Potion" parent="." instance=ExtResource( 1 )]
 
-[connection signal="animation_finished" from="ArcherEnemy/AnimatedSprite" to="ArcherEnemy" method="_on_AnimatedSprite_animation_finished"]
-[connection signal="body_entered" from="ArcherEnemy/Detection Radius" to="ArcherEnemy" method="_on_Detection_Radius_body_entered"]
-[connection signal="body_exited" from="ArcherEnemy/Detection Radius" to="ArcherEnemy" method="_on_Detection_Radius_body_exited"]
+[connection signal="body_entered" from="RigidBody2D/Detection Radius" to="RigidBody2D" method="_on_Detection_Radius_body_entered"]
 [connection signal="Death" from="Player" to="." method="_on_Player_Death"]
 [connection signal="tween_completed" from="Platform/PlatformObject/Tween" to="Platform" method="_on_Tween_tween_completed"]
 [connection signal="tween_completed" from="Platform2/PlatformObject/Tween" to="Platform2" method="_on_Tween_tween_completed"]

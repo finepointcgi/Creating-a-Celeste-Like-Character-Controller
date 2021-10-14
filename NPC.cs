@@ -8,6 +8,7 @@ public class NPC : KinematicBody2D
     // private string b = "text";
     private List<NPCDialouge> npcDialouge;
     private string npcName;
+    private int health = 1;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -32,5 +33,10 @@ public class NPC : KinematicBody2D
     public void setNPCDialouge(){
         InterfaceManager.dialougeManger.npcDialouge = npcDialouge;
         InterfaceManager.dialougeManger.DialougeHeader = npcName;
+    }
+
+    public void TakeDamage(int amount){
+        health -= amount;
+        QueueFree();
     }
 }
