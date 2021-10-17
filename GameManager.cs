@@ -10,6 +10,7 @@ public class GameManager : Node2D
     [Export]
     public Position2D RespawnPoint;
     public static GameManager GlobalGameManager;
+    public static PlayerController Player;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -18,6 +19,7 @@ public class GameManager : Node2D
         }else{
             QueueFree();
         }
+        
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
