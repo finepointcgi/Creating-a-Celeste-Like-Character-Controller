@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iOgVsIQrlWr04Yd05wHmc45mwS7UPNtBm3MvOl1gl92OQl7OCGf59mAaP4qvCgZEkMrGvB0zhrpMpVVAQhez1w==",
+  "dgSpecHash": "xCnVbkNRDjW64yP0Kf8dgr7jYO1Qn6ajepOGyrBJX175ZWygVMDXoI0WV02xd4NyM8/boX4YBCJguUtJtH1SlA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
+  "projectFilePath": "E:\\2d platformer\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
