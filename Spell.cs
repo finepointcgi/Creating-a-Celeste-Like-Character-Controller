@@ -15,4 +15,8 @@ public abstract class Spell : Node2D
     public abstract void loadResourcePath();
 
     public abstract void SetUp(bool facedirection);
+
+    public virtual void TakeDamage(int damage){
+        
+    }
 }

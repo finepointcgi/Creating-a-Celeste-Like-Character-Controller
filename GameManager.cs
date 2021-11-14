@@ -11,6 +11,7 @@ public class GameManager : Node2D
     public Position2D RespawnPoint;
     public static GameManager GlobalGameManager;
     public static PlayerController player;
+    public static SpellManager spellManager;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -19,6 +20,7 @@ public class GameManager : Node2D
         }else{
             QueueFree();
         }
+        spellManager = new SpellManager();
         player = GetNode<PlayerController>("Player");
         
     }

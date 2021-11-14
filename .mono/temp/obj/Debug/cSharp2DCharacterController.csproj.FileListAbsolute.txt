@@ -15,3 +15,11 @@ C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCh
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.pdb
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.csproj.AssemblyReference.cache
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.csprojAssemblyReference.cache
+C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.AssemblyInfoInputs.cache
+C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.AssemblyInfo.cs
+C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.csproj.CoreCompileInputs.cache
+C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.dll
+C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.pdb
+C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp\bin\Debug\cSharp2DCharacterController.dll
+C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp\bin\Debug\cSharp2DCharacterController.pdb

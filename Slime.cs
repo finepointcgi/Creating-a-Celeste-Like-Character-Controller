@@ -88,6 +88,12 @@ public class Slime : KinematicBody2D
         }
     }
 
+    public void TakeDamage(int damageAmount){
+        Health -= damageAmount;
+        if(Health <= 0)
+            QueueFree();
+    }
+
 
 
 

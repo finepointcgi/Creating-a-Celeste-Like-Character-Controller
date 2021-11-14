@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+using System.Collections.Generic;
 public class PlayerController : KinematicBody2D
 {
     private int speed = 100;
@@ -39,10 +39,11 @@ public class PlayerController : KinematicBody2D
     [Export]
     public bool isAttacking = false;
 
-    private float stamina = 100f;
+    public float stamina = 100f;
     private float maxStamina = 100f;
     private float staminaTimerReset = 2f;
     private float staminaTimer = 2f;
+    public List<Key> keys = new List<Key>();
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -153,6 +154,7 @@ public class PlayerController : KinematicBody2D
     }
 
     private void attack(){
+        GameManager.spellManager.CastSpell(GameManager.player.GetNode<AnimatedSprite>("AnimatedSprite").FlipH);
         animationPlayer.Play("Attack");
         canAttack = false;
         isAttacking = true;

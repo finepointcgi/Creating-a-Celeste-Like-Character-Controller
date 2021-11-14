@@ -13,13 +13,20 @@ public class Fireball : Spell
     private int speed = 80;
     private bool faceDirection;
     private float lifeSpan = 20;
-    
+    private AnimationPlayer animationPlayer;
+    [Export]
+    public bool ableToMove = false;
     public override void _PhysicsProcess(float delta)
     {
-        if(faceDirection)
-            Position -= (Transform.x * delta * speed);
-        else
-            Position += Transform.x * delta * speed;
+        if(!animationPlayer.IsPlaying()){
+            animationPlayer.Play("idle");
+        }
+        if(ableToMove){
+            if(faceDirection)
+                Position -= (Transform.x * delta * speed);
+            else
+                Position += Transform.x * delta * speed;
+        }
         lifeSpan -= delta;
         if(lifeSpan < 0){
             QueueFree();
@@ -29,6 +36,8 @@ public class Fireball : Spell
     public override void _Ready()
     {
         GD.Print("test");
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        animationPlayer.Play("cast");
     }
     public override void castSpell()
     {
@@ -50,12 +59,21 @@ public class Fireball : Spell
 //  }
 
     public void _on_Area2D_body_entered(object body){
-        QueueFree();
+        animationPlayer.Play("final");
+        ableToMove = false;
         if(body is KinematicBody2D){
             if(body is PlayerController){
                 PlayerController pc = body as PlayerController;
                 pc.TakeDamage();
             }
+            if(body is Slime){
+                Slime enemy = body as Slime;
+                enemy.TakeDamage(damageAmount);
+            }
         }
+    }
+
+    public void Remove(){
+        QueueFree();
     }
 }
