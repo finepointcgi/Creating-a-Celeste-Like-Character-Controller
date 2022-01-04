@@ -7,6 +7,7 @@ public class SlimeEnemy : KinematicBody2D
     // private int a = 2;
     // private string b = "text";
     Sprite sprite;
+    private float health;
     RayCast2D bottomLeft;
     RayCast2D bottomRight;
     RayCast2D rightMiddle;
@@ -57,6 +58,13 @@ public class SlimeEnemy : KinematicBody2D
         if(body is PlayerController){
             PlayerController player = body as PlayerController;
             player.TakeDamage();
+        }
+    }
+
+    public void TakeDamage(float damageAmount){
+        health -= damageAmount;
+        if(health <= 0){
+            QueueFree();
         }
     }
 }

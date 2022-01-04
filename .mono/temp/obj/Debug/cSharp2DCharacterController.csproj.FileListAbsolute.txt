@@ -13,5 +13,4 @@ C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCh
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.csproj.CoreCompileInputs.cache
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.dll
 C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.pdb
-C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.csproj.AssemblyReference.cache
-C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\Debug\cSharp2DCharacterController.csprojAssemblyReference.cache

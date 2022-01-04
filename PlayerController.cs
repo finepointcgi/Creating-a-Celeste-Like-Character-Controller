@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+using System.Collections.Generic;
 public class PlayerController : KinematicBody2D
 {
     private int speed = 100;
@@ -36,6 +36,7 @@ public class PlayerController : KinematicBody2D
     private float maxMana = 100f;
     private float manaTimerReset = 2f;
     private float manaTimer = 2f;
+    public List<Key> Keys = new List<Key>();
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -50,6 +51,7 @@ public class PlayerController : KinematicBody2D
     public override void _PhysicsProcess(float delta)
     {
         InterfaceManager.UpdateMana(maxMana,mana);
+        InterfaceManager.UpdateHealth(MaxHealth,Health);
         if(Health > 0 && GameManager.GlobalGameManager.GamePaused != true){
             if (!isDashing && !isWallJumping)
             {
@@ -125,9 +127,15 @@ public class PlayerController : KinematicBody2D
             }
             if(mana < 100 && manaTimer <= 0){
                 UpdateMana(delta * 1);
-                GD.Print(mana);
+                //GD.Print(mana);
             }else if(mana != 100){
                 manaTimer -= delta * 1;
+            }
+            if(Input.IsActionJustPressed("attack")){
+                attack();
+            }
+            if(Input.IsActionJustPressed("switch_spell")){
+                GameManager.MagicController.CycleSpell();
             }
 
 
@@ -138,6 +146,10 @@ public class PlayerController : KinematicBody2D
         }
     }
 
+    private void attack(){
+        GameManager.MagicController.CastSpell(GameManager.Player.GetNode<AnimatedSprite>("AnimatedSprite").FlipH);
+
+    }
     private void interactWithItem(Node obj){
         if(obj.Owner is Pickupable){
             if(obj.Owner is MagicPotion){
