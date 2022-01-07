@@ -7,6 +7,12 @@ public class IceKnife : Spell
     AnimationPlayer player;
     [Export]
     public bool ableToMove;
+
+    public IceKnife() {
+        InterfaceTexturePath = "res://Spells/ice_shard/I5050-7.png";
+        InterfaceTexture = ResourceLoader.Load(InterfaceTexturePath) as Texture;
+    }
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {

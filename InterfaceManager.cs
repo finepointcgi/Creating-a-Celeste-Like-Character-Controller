@@ -6,6 +6,7 @@ public class InterfaceManager : CanvasLayer
     public static DialougeManger dialougeManger;
     public static ProgressBar ManaBar;
     public static ProgressBar HealthBar;
+    public static TextureRect SpellTextureRect;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -13,6 +14,8 @@ public class InterfaceManager : CanvasLayer
         dialougeManger = GetNode("DialougeManger") as DialougeManger;
         ManaBar = GetNode("MainInterface/ManaBar") as ProgressBar;
         HealthBar = GetNode("MainInterface/HealthBar") as ProgressBar;
+        SpellTextureRect = GetNode("MainInterface/MagicSpellPannel/MagicSpellTexture") as TextureRect;
+        
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,5 +30,9 @@ public class InterfaceManager : CanvasLayer
 
     public static void UpdateMana(float maxMana, float mana){
         ManaBar.Value = (mana / maxMana) * ManaBar.MaxValue;
+    }
+
+    public static void SetSpellSprite(Texture spellImage){
+        SpellTextureRect.Texture = spellImage;
     }
 }

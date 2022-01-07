@@ -3,19 +3,23 @@ using System;
 using System.Collections.Generic;
 public class MagicController : Node
 {
-    public PackedScene EquippedSpell;
-    public List<PackedScene> AvSpells = new List<PackedScene>();
+    public Spell EquippedSpell;
+    public List<Spell> AvSpells = new List<Spell>();
     private int currentCount;
     // Called when the node enters the scene tree for the first time.
     public MagicController()
     {
         IceKnife iceKnife = new IceKnife();
-        AvSpells.Add(ResourceLoader.Load(iceKnife.ResourcePath) as PackedScene);
+        iceKnife.SpellScene = ResourceLoader.Load(iceKnife.ResourcePath) as PackedScene;
+        AvSpells.Add(iceKnife);
         HealingSpell healingSpell = new HealingSpell();
-        AvSpells.Add(ResourceLoader.Load(healingSpell.ResourcePath) as PackedScene);
+        healingSpell.SpellScene = ResourceLoader.Load(healingSpell.ResourcePath) as PackedScene;
+        AvSpells.Add(healingSpell);
         FireBall fireBall = new FireBall();
-        AvSpells.Add(ResourceLoader.Load(fireBall.ResourcePath) as PackedScene);
+        fireBall.SpellScene = ResourceLoader.Load(fireBall.ResourcePath) as PackedScene;
+        AvSpells.Add(fireBall);
         EquippedSpell = AvSpells[2];
+        InterfaceManager.SetSpellSprite(EquippedSpell.InterfaceTexture);
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,7 +28,7 @@ public class MagicController : Node
 //      
 //  }
     public void CastSpell(bool faceDirection){
-        Spell currentSpell = EquippedSpell.Instance() as Spell;    
+        Spell currentSpell = EquippedSpell.SpellScene.Instance() as Spell;    
         currentSpell.SetUp(faceDirection);
         if(faceDirection)
             currentSpell.GlobalPosition = GameManager.Player.GetNode<Position2D>("SpellCastLeft").GlobalPosition;
@@ -40,5 +44,6 @@ public class MagicController : Node
            currentCount = 0;
         }
         EquippedSpell = AvSpells[currentCount];
+        InterfaceManager.SetSpellSprite(EquippedSpell.InterfaceTexture);
     }
 }

@@ -7,6 +7,10 @@ public class FireBall : Spell
     AnimationPlayer player;
     [Export]
     public bool ableToMove;
+    public FireBall(){
+        InterfaceTexturePath = "res://Spells/fireball_v_1_1/FB500-1.png";
+        InterfaceTexture = ResourceLoader.Load(InterfaceTexturePath) as Texture;
+    }
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {

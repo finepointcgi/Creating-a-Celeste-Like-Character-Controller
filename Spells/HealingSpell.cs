@@ -9,6 +9,11 @@ public class HealingSpell : Spell
     public string ResourcePath = "res://Spells/HealingSpell.tscn";
     public bool PlayerInArea;
 
+    public HealingSpell(){
+        InterfaceTexturePath = "res://Spells/HealSpell/1.png";
+        InterfaceTexture = ResourceLoader.Load(InterfaceTexturePath) as Texture;
+    }
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
