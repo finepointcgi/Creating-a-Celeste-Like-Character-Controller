@@ -7,17 +7,20 @@ public class HealingSpell : Spell
     // private int a = 2;
     // private string b = "text";
     public string ResourcePath = "res://Spells/HealingSpell.tscn";
-    public bool PlayerInArea;
+    public Texture InterfaceTexture ;
 
     public HealingSpell(){
         InterfaceTexturePath = "res://Spells/HealSpell/1.png";
         InterfaceTexture = ResourceLoader.Load(InterfaceTexturePath) as Texture;
     }
 
+    public bool PlayerInArea;
+    
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         GetNode<AnimationPlayer>("AnimationPlayer").Play("idle");
+        
     }
     
     public override void SetUp(bool facedirection){
@@ -58,4 +61,9 @@ public class HealingSpell : Spell
             PlayerInArea = false;
         }
     }
+
+    public override string GetSpellPath(){
+        return ResourcePath;
+    }
+
 }

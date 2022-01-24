@@ -8,8 +8,9 @@
 [ext_resource path="res://GhostPlayer.tscn" type="PackedScene" id=6]
 [ext_resource path="res://PlayerController.cs" type="Script" id=7]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.20529, 8.1895 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.15457
+height = 3.4554
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 4 )
@@ -162,7 +163,7 @@ position = Vector2( 4.31088, -0.222992 )
 rotation = 1.5708
 enabled = true
 cast_to = Vector2( 0, 14.316 )
-collision_mask = 3
+collision_mask = 524291
 collide_with_areas = true
 
 [node name="RaycastRight" type="RayCast2D" parent="."]
@@ -170,7 +171,7 @@ position = Vector2( -5.64874, -0.222992 )
 rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, 15.713 )
-collision_mask = 3
+collision_mask = 524291
 collide_with_areas = true
 
 [node name="RaycastLeftClimb" type="RayCast2D" parent="."]

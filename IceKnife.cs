@@ -3,6 +3,7 @@ using System;
 
 public class IceKnife : Spell
 {
+    
     public string ResourcePath = "res://Spells/IceKnife.tscn";
     AnimationPlayer player;
     [Export]
@@ -53,10 +54,11 @@ public class IceKnife : Spell
 
     public void _on_Area2D_body_entered(object body){
         player.Play("finish");
-        if(body is SlimeEnemy){
-            SlimeEnemy slime = body as SlimeEnemy;
-            slime.TakeDamage(DamageAmount);
-        }
+        base.DoDamage(body,DamageAmount);
         
+    }
+
+    public override string GetSpellPath(){
+        return ResourcePath;
     }
 }

@@ -27,15 +27,20 @@ public class MagicController : Node
 //  {
 //      
 //  }
-    public void CastSpell(bool faceDirection){
-        Spell currentSpell = EquippedSpell.SpellScene.Instance() as Spell;    
-        currentSpell.SetUp(faceDirection);
-        if(faceDirection)
-            currentSpell.GlobalPosition = GameManager.Player.GetNode<Position2D>("SpellCastLeft").GlobalPosition;
-        else
-            currentSpell.GlobalPosition = GameManager.Player.GetNode<Position2D>("SpellCastRight").GlobalPosition;
-        GameManager.GlobalGameManager.AddChild(currentSpell);
-        GameManager.Player.UpdateMana(-currentSpell.ManaCost);    
+    public void CastSpell(bool faceDirection, float mana){
+        
+        Spell currentSpell = EquippedSpell.SpellScene.Instance() as Spell;  
+        if(currentSpell.ManaCost <= mana){  
+            currentSpell.SetUp(faceDirection);
+            if(faceDirection)
+                currentSpell.GlobalPosition = GameManager.Player.GetNode<Position2D>("SpellCastLeft").GlobalPosition;
+            else
+                currentSpell.GlobalPosition = GameManager.Player.GetNode<Position2D>("SpellCastRight").GlobalPosition;
+            GameManager.GlobalGameManager.AddChild(currentSpell);
+            GameManager.Player.UpdateMana(-currentSpell.ManaCost);    
+        }else{
+            currentSpell.QueueFree();
+        }
     }
 
     public void CycleSpell(){

@@ -15,10 +15,24 @@
             "type": "godot-mono",
             "request": "launch",
             "mode": "executable",
-            "executable": "${workspaceRoot}/Godot.exe",
+            "preLaunchTask": "build",
+            "executable": "<insert-godot-executable-path-here>",
             "executableArguments": [
                 "--path",
                 "${workspaceRoot}"
+            ]
+        },
+        {
+            "name": "Launch (Select Scene)",
+            "type": "godot-mono",
+            "request": "launch",
+            "mode": "executable",
+            "preLaunchTask": "build",
+            "executable": "<insert-godot-executable-path-here>",
+            "executableArguments": [
+                "--path",
+                "${workspaceRoot}",
+                "${command:SelectLaunchScene}"
             ]
         },
         {

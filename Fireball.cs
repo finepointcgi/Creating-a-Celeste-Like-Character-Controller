@@ -51,10 +51,12 @@ public class FireBall : Spell
 
     public void _on_Area2D_body_entered(object body){
         player.Play("finish");
-        if(body is SlimeEnemy){
-            SlimeEnemy slime = body as SlimeEnemy;
-            slime.TakeDamage(DamageAmount);
-        }
+        base.DoDamage(body,DamageAmount);
         
+    }
+
+    public override string GetSpellPath()
+    {
+        return ResourcePath;
     }
 }

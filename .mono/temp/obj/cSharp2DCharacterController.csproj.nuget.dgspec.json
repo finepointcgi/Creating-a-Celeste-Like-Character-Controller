@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\animeman\\Documents\\Celest like tutorial\\cSharp2DCharacterController.csproj": {}
+    "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj": {}
   },
   "projects": {
-    "C:\\Users\\animeman\\Documents\\Celest like tutorial\\cSharp2DCharacterController.csproj": {
+    "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\animeman\\Documents\\Celest like tutorial\\cSharp2DCharacterController.csproj",
+        "projectUniqueName": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
         "projectName": "cSharp2DCharacterController",
-        "projectPath": "C:\\Users\\animeman\\Documents\\Celest like tutorial\\cSharp2DCharacterController.csproj",
-        "packagesPath": "C:\\Users\\animeman\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\animeman\\Documents\\Celest like tutorial\\.mono\\temp\\obj\\",
+        "projectPath": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
+        "packagesPath": "C:\\Users\\Mitch\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\.mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\animeman\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Mitch\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net472"
@@ -26,6 +30,7 @@
         },
         "frameworks": {
           "net472": {
+            "targetAlias": "net472",
             "projectReferences": {}
           }
         },
@@ -37,7 +42,8 @@
       },
       "frameworks": {
         "net472": {
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.414\\RuntimeIdentifierGraph.json"
+          "targetAlias": "net472",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

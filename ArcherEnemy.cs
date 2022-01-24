@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class ArcherEnemy : Node2D
+public class ArcherEnemy : Enemy
 {
     // Declare member variables here. Examples:
     // private int a = 2;

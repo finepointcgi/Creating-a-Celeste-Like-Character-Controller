@@ -18,6 +18,12 @@ public abstract class Spell : Node2D
     public abstract void CastSpell();
     public abstract void LoadResourcePath();
     public abstract void SetUp(bool faceDirection);
-    
+    public abstract string GetSpellPath();
+    public void DoDamage(object body, float damageAmount){
+        if(body is Enemy){
+            Enemy enemy = body as Enemy;
+            enemy.TakeDamage(damageAmount);
+        }
+    }
 
 }

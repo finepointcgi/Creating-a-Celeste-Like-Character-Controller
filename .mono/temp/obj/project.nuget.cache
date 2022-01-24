@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oDQ4PZLtxbCaAxNTpgrgrV4+bXFr9V0f2U5Q0Go4sk/Jq/ieBVWfJCl+rC88H+T0b7cU5VeJiqKWKMg2aEcEmQ==",
+  "dgSpecHash": "wca7519jrlg8ka5UXzb0BYExwIcsncjMNWsHpeJcQP6bq0VA/eojerjNw7IAT7kTDaIko1b8AZtEkRyL1/+keQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\animeman\\Documents\\Celest like tutorial\\cSharp2DCharacterController.csproj",
+  "projectFilePath": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
