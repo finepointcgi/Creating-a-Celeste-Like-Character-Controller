@@ -1,15 +1,21 @@
 using Godot;
 using System;
 
-public class SlimeEnemy : Enemy
+public class SlimeEnemy : KinematicBody2D
 {
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
+    Sprite sprite;
+    private float health;
     RayCast2D bottomLeft;
     RayCast2D bottomRight;
     RayCast2D rightMiddle;
     RayCast2D leftMiddle;
+    private Vector2 velocity;
+    private int gravity = 200;
+    private int speed = 30;
+    private AnimationPlayer animationPlayer;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -52,6 +58,13 @@ public class SlimeEnemy : Enemy
         if(body is PlayerController){
             PlayerController player = body as PlayerController;
             player.TakeDamage();
+        }
+    }
+
+    public void TakeDamage(float damageAmount){
+        health -= damageAmount;
+        if(health <= 0){
+            QueueFree();
         }
     }
 }
