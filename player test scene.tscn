@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://ArcherHero/Final/Normal Attack.png" type="Texture" id=1]
 [ext_resource path="res://ArcherHero/Final/Idle and running.png" type="Texture" id=2]
@@ -22,8 +22,6 @@
 [ext_resource path="res://Key.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Door.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Spells/fireball_V_1_1/FB500-2.png" type="Texture" id=22]
-[ext_resource path="res://Jumper.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Fly.tscn" type="PackedScene" id=24]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -166,47 +164,47 @@ region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 64, 64 )
+region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 64, 64 )
+region = Rect2( 64, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 64, 64 )
+region = Rect2( 128, 64, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 64, 64 )
+region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 1 )
-region = Rect2( 256, 0, 64, 64 )
+region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 1 )
-region = Rect2( 320, 0, 64, 64 )
+region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 1 )
-region = Rect2( 384, 0, 64, 64 )
+region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 1 )
-region = Rect2( 448, 0, 64, 64 )
+region = Rect2( 256, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 64, 64, 64 )
+region = Rect2( 320, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 1 )
-region = Rect2( 64, 64, 64, 64 )
+region = Rect2( 384, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 1 )
-region = Rect2( 128, 64, 64, 64 )
+region = Rect2( 448, 0, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=21]
 animations = [ {
@@ -215,14 +213,14 @@ animations = [ {
 "name": "Idle",
 "speed": 2.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": true,
-"name": "Drawback",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "Shoot",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "Drawback",
 "speed": 5.0
 } ]
 
@@ -503,14 +501,6 @@ DoorKey = "Blue"
 position = Vector2( 53.6739, 236.482 )
 z_index = -1
 DoorKey = "Green"
-
-[node name="Jumper" parent="." instance=ExtResource( 23 )]
-position = Vector2( 650, 120 )
-
-[node name="Fly" parent="." instance=ExtResource( 24 )]
-position = Vector2( 0.931158, 0.192816 )
-health = 1.0
-acceleration = 5.0
 
 [connection signal="animation_finished" from="ArcherEnemy/AnimatedSprite" to="ArcherEnemy" method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="ArcherEnemy/Detection Radius" to="ArcherEnemy" method="_on_Detection_Radius_body_entered"]
