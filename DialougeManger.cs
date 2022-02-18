@@ -16,6 +16,7 @@ public class DialougeManger : Control
     private bool isDialougeUp;
     private int currentSelectionIndex = 0;
     public string DialougeHeader;
+    private NPCDialouge currentDialougeOpen;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -27,6 +28,7 @@ public class DialougeManger : Control
     public async override void _Process(float delta)
     {
         if(GameManager.GlobalGameManager.GamePaused && isDialougeUp){
+             await ToSignal(GetTree(), "idle_frame");
             if(Input.IsActionJustPressed("ui_left")){
                 foreach (var item in Selections)
                 {
@@ -48,18 +50,25 @@ public class DialougeManger : Control
                 }
                 Selections[currentSelectionIndex].SetSelected(true);
             }else if (Input.IsActionJustPressed("ui_accept")){
-                await ToSignal(GetTree(), "idle_frame");
-                dispayNextDialougeElement(Selections[currentSelectionIndex].interfaceSelectionObject.SelectionIndex);
+                InterfaceSelectionObject selectedObject = Selections[currentSelectionIndex].interfaceSelectionObject;
+                if(selectedObject.AcceptQuest){
+                    GameManager.QuestManager.ActiveQuests.Add(currentDialougeOpen.Quest);
+                }
+                dispayNextDialougeElement(selectedObject.SelectionIndex);
             }
         }
     }
-    public void ShowDialougeElement(){
+    public async void ShowDialougeElement(){
         GetNode<Popup>("Popup").Popup_();
         GetNode<Label>("Popup/Label").Text = DialougeHeader;
         WriteDialouge(npcDialouge[0]);
+        GameManager.Player.pauseInput = true;
+        await ToSignal(GetTree(), "idle_frame");
+
     }
 
     public void WriteDialouge(NPCDialouge dialouge){
+        currentDialougeOpen = dialouge;
         foreach (Node item in GetNode<Node>("Popup/HBoxContainer").GetChildren())
         {
             item.QueueFree();
@@ -80,14 +89,17 @@ public class DialougeManger : Control
         GameManager.GlobalGameManager.GamePaused = true;    
     }
 
-    private void shutdownDialouge(){
+    private async void shutdownDialouge(){
         GetNode<Popup>("Popup").Hide();
         GameManager.GlobalGameManager.GamePaused = false;
+        GameManager.Player.pauseInput = false;
         isDialougeUp = false;
+        await ToSignal(GetTree(), "idle_frame");
     }
 
     private void dispayNextDialougeElement(int index){
         if(npcDialouge.ElementAtOrDefault(index) == null || index == -1){
+            
             shutdownDialouge();
         }else{
             WriteDialouge(npcDialouge[index]);

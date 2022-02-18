@@ -12,6 +12,7 @@ public class GameManager : Node2D
     public static GameManager GlobalGameManager;
     public static PlayerController Player;
     public static MagicController MagicController;
+    public static QuestManager QuestManager;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -21,6 +22,7 @@ public class GameManager : Node2D
             QueueFree();
         }
         MagicController = new MagicController();
+        QuestManager = new QuestManager();
         
     }
 

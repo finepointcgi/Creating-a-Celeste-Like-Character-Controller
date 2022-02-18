@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wca7519jrlg8ka5UXzb0BYExwIcsncjMNWsHpeJcQP6bq0VA/eojerjNw7IAT7kTDaIko1b8AZtEkRyL1/+keQ==",
+  "dgSpecHash": "fGzcbkTLFduEaSUAYHWLaMsn/vS9uNT01aJxaRs3kGSPUxUmrkgaChMDVQTcQEYpAbnas3q0wJbOCFs/8WhyZQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Mitch\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

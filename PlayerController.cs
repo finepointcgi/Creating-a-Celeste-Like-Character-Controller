@@ -49,7 +49,7 @@ public class PlayerController : KinematicBody2D
     public List<Key> Keys = new List<Key>();
     private PlayerState currentState;
     private bool jumping;
-    private bool pauseInput;
+    public bool pauseInput;
     private float damageTimer = .3f;
     private float damageTimerreset = .3f;
 
