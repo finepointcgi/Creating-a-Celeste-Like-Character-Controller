@@ -1,12 +1,12 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 public class NPC : KinematicBody2D
 {
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
-    private List<Quest> npcQuests;
     private List<NPCDialouge> npcDialouge;
     private string npcName;
 
@@ -18,12 +18,9 @@ public class NPC : KinematicBody2D
         InterfaceSelectionObject obj3 = new InterfaceSelectionObject(-1, "ok");
 
         
-        npcQuests = new List<Quest>{
-            new KillQuest(1, 100, 1, 1)
-        };
 
         npcDialouge = new List<NPCDialouge>{
-            new NPCDialouge(new List<InterfaceSelectionObject>(){obj,obj2}, "HELP I NEED YOU TO HELP ME! The slimes they got my daugher! I need you to hunt a slime for me!", 0, null, npcQuests[0]),
+            new NPCDialouge(new List<InterfaceSelectionObject>(){obj,obj2}, "HELP I NEED YOU TO HELP ME! The slimes they got my daugher! I need you to hunt a slime for me!", 0, null, new KillQuest(1, 100)),
             new NPCDialouge(new List<InterfaceSelectionObject>(){obj3}, "Let me know when you have killed a slime! Thank you so much for your help!", 1),
             new NPCDialouge(new List<InterfaceSelectionObject>(){obj3}, "Please help me", 2)
         };
@@ -39,5 +36,15 @@ public class NPC : KinematicBody2D
     public void setNPCDialouge(){
         InterfaceManager.dialougeManger.npcDialouge = npcDialouge;
         InterfaceManager.dialougeManger.DialougeHeader = npcName;
+    }
+
+    public void InteractWithNPC(){
+        if(npcDialouge.Any(d => d.Quest.accepted)){
+            List<NPCDialouge> finishedDialouge = npcDialouge.Where(d => d.Quest.Completed).ToList();
+            foreach (var item in finishedDialouge)
+            {
+                
+            }
+        }
     }
 }

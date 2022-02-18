@@ -5,10 +5,17 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 public class QuestManager
 {
-    private List<Quest> ActiveQuests;
+    public List<Quest> ActiveQuests;
     public List<Quest> AvalQuests;
     public QuestManager(){
-        KillQuest quest = new KillQuest(1,1, 1, 1);
+        KillQuest quest = new KillQuest(1,1, finishDialouge: 
+        new NPCDialouge(
+            new List<InterfaceSelectionObject>{
+                new InterfaceSelectionObject(1, "ok")
+                },"Thank you so much for defeating the enemy!",1),
+            enemyID:1, 
+            numberToKill:1
+        );
         AvalQuests.Add(quest);
     }
 
