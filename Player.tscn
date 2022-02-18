@@ -6,7 +6,7 @@
 [ext_resource path="res://platform_metroidvania asset pack v1.01/herochar sprites(new)/herochar_death_anim_strip_8.png" type="Texture" id=4]
 [ext_resource path="res://platform_metroidvania asset pack v1.01/herochar sprites(new)/herochar_hit_anim_strip_3.png" type="Texture" id=5]
 [ext_resource path="res://GhostPlayer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://PlayerController.cs" type="Script" id=7]
+[ext_resource path="res://Managers/PlayerController.cs" type="Script" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 7.15457

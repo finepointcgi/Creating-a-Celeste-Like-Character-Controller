@@ -8,3 +8,13 @@ C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp
 C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.pdb
 C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Mitch\Documents\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.csproj.CopyComplete
+E:\2d platformer\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.csprojAssemblyReference.cache
+E:\2d platformer\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.AssemblyInfoInputs.cache
+E:\2d platformer\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.AssemblyInfo.cs
+E:\2d platformer\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.csproj.CoreCompileInputs.cache
+E:\2d platformer\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.dll
+E:\2d platformer\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.pdb
+E:\2d platformer\Creating-a-Celeste-Like-Character-Controller\.mono\temp\bin\Debug\cSharp2DCharacterController.dll
+E:\2d platformer\Creating-a-Celeste-Like-Character-Controller\.mono\temp\bin\Debug\cSharp2DCharacterController.pdb
+E:\2d platformer\Creating-a-Celeste-Like-Character-Controller\.mono\temp\bin\Debug\Newtonsoft.Json.dll
+E:\2d platformer\Creating-a-Celeste-Like-Character-Controller\.mono\temp\obj\Debug\cSharp2DCharacterController.csproj.CopyComplete

@@ -33,6 +33,6 @@ public class InterfaceManager : CanvasLayer
     }
 
     public static void SetSpellSprite(Texture spellImage){
-        SpellTextureRect.Texture = spellImage;
+        //SpellTextureRect.Texture = spellImage;
     }
 }

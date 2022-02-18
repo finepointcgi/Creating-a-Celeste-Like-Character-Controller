@@ -20,7 +20,7 @@ public class NPC : KinematicBody2D
         
 
         npcDialouge = new List<NPCDialouge>{
-            new NPCDialouge(new List<InterfaceSelectionObject>(){obj,obj2}, "HELP I NEED YOU TO HELP ME! The slimes they got my daugher! I need you to hunt a slime for me!", 0, null, new KillQuest(1, 100)),
+            new NPCDialouge(new List<InterfaceSelectionObject>(){obj,obj2}, "HELP I NEED YOU TO HELP ME! The slimes they got my daugher! I need you to hunt a slime for me!", 0, null, GameManager.QuestManager.AvalQuests[0]),
             new NPCDialouge(new List<InterfaceSelectionObject>(){obj3}, "Let me know when you have killed a slime! Thank you so much for your help!", 1),
             new NPCDialouge(new List<InterfaceSelectionObject>(){obj3}, "Please help me", 2)
         };
@@ -34,17 +34,17 @@ public class NPC : KinematicBody2D
 //  }
 
     public void setNPCDialouge(){
-        InterfaceManager.dialougeManger.npcDialouge = npcDialouge;
-        InterfaceManager.dialougeManger.DialougeHeader = npcName;
+        
     }
 
     public void InteractWithNPC(){
-        if(npcDialouge.Any(d => d.Quest.accepted)){
+        if(npcDialouge.Where(d => d.Quest != null).Any(d => d.Quest.accepted)){
             List<NPCDialouge> finishedDialouge = npcDialouge.Where(d => d.Quest.Completed).ToList();
-            foreach (var item in finishedDialouge)
-            {
-                
-            }
+            InterfaceManager.dialougeManger.npcDialouge = finishedDialouge;
+            
+        }else{
+            InterfaceManager.dialougeManger.npcDialouge = npcDialouge;
         }
+        InterfaceManager.dialougeManger.DialougeHeader = npcName;
     }
 }

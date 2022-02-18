@@ -44,29 +44,24 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.7.2": [
-      "Newtonsoft.Json >= 13.0.1"
+      "newtonsoft.json >= 13.0.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mitch\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\animeman\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
+      "projectUniqueName": "E:\\2d platformer\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
       "projectName": "cSharp2DCharacterController",
-      "projectPath": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
-      "packagesPath": "C:\\Users\\Mitch\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\.mono\\temp\\obj\\",
+      "projectPath": "E:\\2d platformer\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
+      "packagesPath": "C:\\Users\\animeman\\.nuget\\packages\\",
+      "outputPath": "E:\\2d platformer\\Creating-a-Celeste-Like-Character-Controller\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Mitch\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\animeman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net472"
@@ -77,7 +72,6 @@
       },
       "frameworks": {
         "net472": {
-          "targetAlias": "net472",
           "projectReferences": {}
         }
       },
@@ -89,14 +83,13 @@
     },
     "frameworks": {
       "net472": {
-        "targetAlias": "net472",
         "dependencies": {
-          "Newtonsoft.Json": {
+          "newtonsoft.json": {
             "target": "Package",
             "version": "[13.0.1, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.414\\RuntimeIdentifierGraph.json"
       }
     }
   }

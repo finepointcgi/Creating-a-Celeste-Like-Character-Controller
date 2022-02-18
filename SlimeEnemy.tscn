@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://SlimeEnemy.cs" type="Script" id=1]
+[ext_resource path="res://Enemy/SlimeEnemy.cs" type="Script" id=1]
 [ext_resource path="res://platform_metroidvania asset pack v1.01/enemies sprites/slime/slime_walk_anim_strip_15.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]

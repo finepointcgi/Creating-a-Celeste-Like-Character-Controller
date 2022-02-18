@@ -254,7 +254,7 @@ public class PlayerController : KinematicBody2D
         else if (obj is NPC)
         {
             NPC npc = obj as NPC;
-            npc.setNPCDialouge();
+            npc.InteractWithNPC();
             InterfaceManager.dialougeManger.ShowDialougeElement();
         }
     }

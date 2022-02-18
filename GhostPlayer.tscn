@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://platform_metroidvania asset pack v1.01/herochar sprites(new)/herochar_jump_up_anim_strip_3.png" type="Texture" id=1]
-[ext_resource path="res://GhostPlayer.cs" type="Script" id=2]
+[ext_resource path="res://Utility/GhostPlayer.cs" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeOut"

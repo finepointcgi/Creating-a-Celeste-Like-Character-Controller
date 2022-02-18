@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 public class QuestManager
 {
-    public List<Quest> ActiveQuests;
-    public List<Quest> AvalQuests;
+    public List<Quest> ActiveQuests = new List<Quest>();
+    public List<Quest> AvalQuests = new List<Quest>();
     public QuestManager(){
         KillQuest quest = new KillQuest(1,1, finishDialouge: 
         new NPCDialouge(
