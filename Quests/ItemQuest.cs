@@ -5,7 +5,7 @@ public class ItemQuest : Quest
 {
     public int RequiredItemID;
 
-    public ItemQuest(int id, int rewardXP, bool accepted = false, bool Completed = false, NPCDialouge finishDialouge = null, int itemid = 0){
+    public ItemQuest(int id, int rewardXP, bool accepted = false, bool Completed = false, List<NPCDialouge> finishDialouge = null, int itemid = 0){
         this.id = id;
         this.rewardXP = rewardXP;
         this.RequiredItemID = itemid;
@@ -13,5 +13,7 @@ public class ItemQuest : Quest
     }
 
     public bool CheckIfItemIsCorrectItem(Pickupable item) => item.id == RequiredItemID ? true : false;
-    
+    public override void Update(object obj){
+
+    }
 }

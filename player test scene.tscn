@@ -252,6 +252,7 @@ animations = [ {
 extents = Vector2( 8.13271, 5.3509 )
 
 [node name="GameManager" type="Node2D"]
+position = Vector2( -2, 0 )
 script = ExtResource( 11 )
 RespawnPoint = ExtResource( 12 )
 

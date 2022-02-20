@@ -11,6 +11,7 @@ public class DialougeManger : Control
     public List<NPCDialouge> npcDialouge;
     [Export]
     public PackedScene InterfaceSelectableObject;
+    public List<InterfaceSelectionObject> interfaceSelectionObjects;
 
     public List<InterfaceSelection> Selections = new List<InterfaceSelection>();
     private bool isDialougeUp;
@@ -52,16 +53,17 @@ public class DialougeManger : Control
             }else if (Input.IsActionJustPressed("ui_accept")){
                 InterfaceSelectionObject selectedObject = Selections[currentSelectionIndex].interfaceSelectionObject;
                 if(selectedObject.AcceptQuest){
-                    GameManager.QuestManager.ActiveQuests.Add(currentDialougeOpen.Quest);
+                   //GameManager.QuestManager.AvalQuests.Where(d => d.id == currentDialougeOpen.QuestID).FirstOrDefault(); //currentDialougeOpen.Quest.accepted = true; 
+                   GameManager.QuestManager.ActiveQuests.Add(currentDialougeOpen.QuestID);
                 }
                 dispayNextDialougeElement(selectedObject.SelectionIndex);
             }
         }
     }
-    public async void ShowDialougeElement(){
+    public async void ShowDialougeElement(int index){
         GetNode<Popup>("Popup").Popup_();
         GetNode<Label>("Popup/Label").Text = DialougeHeader;
-        WriteDialouge(npcDialouge[0]);
+        WriteDialouge(npcDialouge[index]);
         GameManager.Player.pauseInput = true;
         await ToSignal(GetTree(), "idle_frame");
 
@@ -75,10 +77,10 @@ public class DialougeManger : Control
         }
         Selections = new List<InterfaceSelection>();
         GetNode<RichTextLabel>("Popup/RichTextLabel").Text = dialouge.DisplayText;
-        foreach (var item in dialouge.InterfaceSelectionObjects)
+        foreach (var item in dialouge.InterfaceSelectionObjectsID)
         {
             InterfaceSelection interfaceSelection = InterfaceSelectableObject.Instance() as InterfaceSelection;
-            interfaceSelection.interfaceSelectionObject = item;
+            interfaceSelection.interfaceSelectionObject = interfaceSelectionObjects.Where(x => x.Id == item).FirstOrDefault();
             GetNode<HBoxContainer>("Popup/HBoxContainer").AddChild(interfaceSelection);
             Selections.Add(interfaceSelection);
             interfaceSelection.SetSelected(false);

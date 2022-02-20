@@ -43,4 +43,6 @@ public class GameManager : Node2D
     private void _on_Player_Death(){
         RespawnPlayer();
     }
+
+    
 }

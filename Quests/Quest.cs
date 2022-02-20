@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-public abstract class Quest : Node
+public abstract class Quest
 {
     public int id;
     public int rewardXP;
     public bool accepted;
     public bool Completed;
-    public NPCDialouge FinishDialougeElement;
+    public List<NPCDialouge> FinishDialougeElement;
 
-    
-
+    public abstract void Update(object obj);
 }

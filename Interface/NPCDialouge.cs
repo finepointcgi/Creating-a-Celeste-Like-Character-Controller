@@ -3,20 +3,20 @@ using System.Collections.Generic;
 public class NPCDialouge
 {
     public int Index;
-    public List<InterfaceSelectionObject> InterfaceSelectionObjects;
+    public List<int> InterfaceSelectionObjectsID;
     public List<NPCDialouge> NPCDialouges;
     public string DisplayText;
-    public Quest Quest;
+    public int QuestID;
 
-    public NPCDialouge(List<InterfaceSelectionObject> interfaceSelectionObjects, string displayText, int index, List<NPCDialouge> dialouges = null, Quest quest = null){
-        InterfaceSelectionObjects = interfaceSelectionObjects;
+    public NPCDialouge(List<int> interfaceSelectionObjectsID, string displayText, int index, List<NPCDialouge> dialouges = null, int questid = -1){
+        InterfaceSelectionObjectsID = interfaceSelectionObjectsID;
         DisplayText = displayText;
         Index = index;
         if(dialouges != null){
             NPCDialouges = dialouges;
         }
-        if(quest != null){
-            Quest = quest;
+        if(questid != 0){
+            QuestID = questid;
         }
     }
 }

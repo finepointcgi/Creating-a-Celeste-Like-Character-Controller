@@ -255,7 +255,7 @@ public class PlayerController : KinematicBody2D
         {
             NPC npc = obj as NPC;
             npc.InteractWithNPC();
-            InterfaceManager.dialougeManger.ShowDialougeElement();
+            InterfaceManager.dialougeManger.ShowDialougeElement(npc.index);
         }
     }
     private void processClimb(float delta)
