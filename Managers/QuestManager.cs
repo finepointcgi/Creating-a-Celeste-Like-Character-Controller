@@ -14,6 +14,7 @@ public class QuestManager
     public QuestManager(){
         
         LoadQuests("C:/Temp/");
+        
     }
 
     public void LoadQuests(string path){
@@ -24,8 +25,11 @@ public class QuestManager
         AvalQuests = JsonConvert.DeserializeObject<Dictionary<int,Quest>>(json);
     }
 
-    public void AddActiveQuests(Quest questToAdd){
-        ActiveQuests.Add(questToAdd.id); 
+    public void AddActiveQuests(int id){
+        ActiveQuests.Add(id); 
+        Quest q = AvalQuests[id];
+
+        InterfaceManager.QuestMenu.AddQuestElement(AvalQuests[id]);
     }
 
     public void RemoveActiveQuests(int questToRemove){
@@ -33,10 +37,11 @@ public class QuestManager
     }
 
     public void updateQuests(object obj){
-        foreach (var item in ActiveQuests)
+        List<int> actQuests = new List<int>(ActiveQuests);
+        foreach (var item in actQuests)
         {
             Quest q = AvalQuests[item];
-            if(q is KillQuest){
+            if(q is KillQuest){ 
                 KillQuest kq = q as KillQuest;
                 SlimeEnemy slime = obj as SlimeEnemy;
                 if(kq.EnemyID == slime.id){

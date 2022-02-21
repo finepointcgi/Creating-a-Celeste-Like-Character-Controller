@@ -11,6 +11,7 @@ public class MagicPotion : Pickupable
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        id = 1;
         GetNode<AnimationPlayer>("AnimationPlayer").Play("Bounce");
     }
 
@@ -33,6 +34,7 @@ public class MagicPotion : Pickupable
 
     public void UsePotion(){
         GameManager.Player.UpdateMana(MagicGainAmount);
+        GameManager.QuestManager.updateQuests(this);
         QueueFree();
     }
 }

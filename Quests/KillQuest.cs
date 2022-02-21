@@ -24,7 +24,12 @@ public class KillQuest : Quest
             numberLeftToKill -= 1;
             if(numberLeftToKill <= 0){
                 this.Completed = true;
+                InterfaceManager.QuestMenu.UpdateQuestElement(InterfaceElement, QuestName, CompletedDescription);
+            }else{
+                Description = Description.Replace("{number}", numberLeftToKill.ToString());
+                InterfaceManager.QuestMenu.UpdateQuestElement(InterfaceElement, QuestName,Description);
             }
         }
     }
+    public override string GetDescription() => Description.Replace("{number}", numberLeftToKill.ToString());
 }

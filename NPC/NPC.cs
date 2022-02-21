@@ -19,7 +19,6 @@ public class NPC : KinematicBody2D
     {
         npcName = "Bob";
         LoadNPC("C:/Temp/");
-        
 
         foreach (NPCDialouge item in npcInterface.NPCDialouges)
         {
@@ -49,6 +48,7 @@ public class NPC : KinematicBody2D
                 InterfaceManager.dialougeManger.npcDialouge = GameManager.QuestManager.AvalQuests[item].FinishDialougeElement;
                 GameManager.QuestManager.RemoveActiveQuests(item);
                 GameManager.QuestManager.AvalQuests[item].Completed = true;
+                GameManager.QuestManager.AvalQuests[item].InterfaceElement.QueueFree();
                 return;
             }
         }

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://QuestElement.cs" type="Script" id=1]
+
+[node name="QuestElement" type="Control"]
+margin_right = 264.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+script = ExtResource( 1 )
+
+[node name="Title" type="RichTextLabel" parent="."]
+margin_left = 4.03601
+margin_top = 8.07207
+margin_right = 219.036
+margin_bottom = 48.0721
+text = "Title"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc" type="RichTextLabel" parent="."]
+margin_left = 4.0
+margin_top = 23.0
+margin_right = 219.0
+margin_bottom = 48.0
+text = "Desc"
+__meta__ = {
+"_edit_use_anchors_": false
+}

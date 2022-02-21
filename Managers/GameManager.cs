@@ -25,6 +25,7 @@ public class GameManager : Node2D
         }else{
             QueueFree();
         }
+        QuestManager.AddActiveQuests(2);
         
     }
 

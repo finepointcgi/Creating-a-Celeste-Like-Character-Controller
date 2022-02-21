@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://ArcherHero/Final/Normal Attack.png" type="Texture" id=1]
 [ext_resource path="res://ArcherHero/Final/Idle and running.png" type="Texture" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Key.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Door.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Spells/fireball_V_1_1/FB500-2.png" type="Texture" id=22]
+[ext_resource path="res://QuestMenu.cs" type="Script" id=23]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -153,6 +154,14 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 } ]
 4/z_index = 0
 
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 64, 64, 64 )
@@ -197,16 +206,13 @@ region = Rect2( 384, 0, 64, 64 )
 atlas = ExtResource( 1 )
 region = Rect2( 448, 0, 64, 64 )
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 64, 64 )
-
 [sub_resource type="SpriteFrames" id=21]
 animations = [ {
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 2.0
+}, {
 "frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "Shoot",
@@ -216,11 +222,6 @@ animations = [ {
 "loop": true,
 "name": "Drawback",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 8 ), SubResource( 9 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 2.0
 } ]
 
 [sub_resource type="CircleShape2D" id=22]
@@ -298,7 +299,6 @@ shape = SubResource( 23 )
 script = ExtResource( 10 )
 
 [node name="DialougeManger" type="Control" parent="InterfaceManager"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -11.0
@@ -356,7 +356,6 @@ __meta__ = {
 }
 
 [node name="MainInterface" type="Control" parent="InterfaceManager"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.187286
@@ -400,6 +399,34 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="QuestMenu" type="Control" parent="InterfaceManager"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -264.0
+margin_top = 92.0
+margin_bottom = -186.0
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuestList" type="VBoxContainer" parent="InterfaceManager/QuestMenu"]
+anchor_right = 1.0
+margin_bottom = 46.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InterfaceManager/QuestMenu"]
+anchor_left = 0.432
+anchor_right = 0.644
+margin_left = -0.0480042
+margin_top = -15.0
+margin_right = -0.0160217
+margin_bottom = 25.0
+text = "Quests"
 
 [node name="NPC" type="KinematicBody2D" parent="."]
 position = Vector2( 136.278, 84.4802 )

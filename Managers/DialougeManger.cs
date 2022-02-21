@@ -19,6 +19,7 @@ public class DialougeManger : Control
     public string DialougeHeader;
     private NPCDialouge currentDialougeOpen;
 
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -54,7 +55,7 @@ public class DialougeManger : Control
                 InterfaceSelectionObject selectedObject = Selections[currentSelectionIndex].interfaceSelectionObject;
                 if(selectedObject.AcceptQuest){
                    //GameManager.QuestManager.AvalQuests.Where(d => d.id == currentDialougeOpen.QuestID).FirstOrDefault(); //currentDialougeOpen.Quest.accepted = true; 
-                   GameManager.QuestManager.ActiveQuests.Add(currentDialougeOpen.QuestID);
+                   GameManager.QuestManager.AddActiveQuests(currentDialougeOpen.QuestID);
                 }
                 dispayNextDialougeElement(selectedObject.SelectionIndex);
             }
@@ -107,5 +108,6 @@ public class DialougeManger : Control
             WriteDialouge(npcDialouge[index]);
         }
     }
+
 
 }
