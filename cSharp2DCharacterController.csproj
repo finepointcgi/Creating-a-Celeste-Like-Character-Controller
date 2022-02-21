@@ -3,6 +3,7 @@
     <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="jsonknowntypes" Version="0.5.4" />
     <PackageReference Include="newtonsoft.json" Version="13.0.1" />
   </ItemGroup>
 </Project>

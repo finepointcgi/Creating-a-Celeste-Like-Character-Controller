@@ -44,6 +44,10 @@
         "net472": {
           "targetAlias": "net472",
           "dependencies": {
+            "jsonknowntypes": {
+              "target": "Package",
+              "version": "[0.5.4, )"
+            },
             "newtonsoft.json": {
               "target": "Package",
               "version": "[13.0.1, )"

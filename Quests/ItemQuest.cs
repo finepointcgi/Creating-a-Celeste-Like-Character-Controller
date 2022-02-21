@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using JsonKnownTypes;
+
+[JsonKnownThisType("ItemQuest")]
 public class ItemQuest : Quest
 {
     public int RequiredItemID;

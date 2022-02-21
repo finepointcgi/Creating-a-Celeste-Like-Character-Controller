@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "CsAFPeynOimql4+Gguig427Ex+iBjuYGKCKpCfKLGRicktqahZGzbnEVhhs0ugSxzheQqmoomnqxfeHKqguARw==",
+  "dgSpecHash": "E8/KZbtld7Oo4WLqaX9q2J3NAS/qlfzuNVJbOZfxB/H/7xFoMurGHBIrGrQ8PwIuLTqobAH+YGfAsn9wrEEF4w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mitch\\Documents\\Creating-a-Celeste-Like-Character-Controller\\cSharp2DCharacterController.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Mitch\\.nuget\\packages\\jsonknowntypes\\0.5.4\\jsonknowntypes.0.5.4.nupkg.sha512",
     "C:\\Users\\Mitch\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []

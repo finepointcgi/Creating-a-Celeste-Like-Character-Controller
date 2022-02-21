@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
+using JsonKnownTypes;
+
+[JsonConverter(typeof(JsonKnownTypesConverter<Quest>))]
 public abstract class Quest
 {
     public int id;

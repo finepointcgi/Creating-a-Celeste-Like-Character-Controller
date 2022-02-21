@@ -153,14 +153,6 @@ points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
 } ]
 4/z_index = 0
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 64, 64 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 64, 64 )
-
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 64, 64, 64 )
@@ -205,13 +197,16 @@ region = Rect2( 384, 0, 64, 64 )
 atlas = ExtResource( 1 )
 region = Rect2( 448, 0, 64, 64 )
 
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
 [sub_resource type="SpriteFrames" id=21]
 animations = [ {
-"frames": [ SubResource( 8 ), SubResource( 9 ) ],
-"loop": true,
-"name": "Idle",
-"speed": 2.0
-}, {
 "frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "Shoot",
@@ -221,6 +216,11 @@ animations = [ {
 "loop": true,
 "name": "Drawback",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 2.0
 } ]
 
 [sub_resource type="CircleShape2D" id=22]
@@ -254,7 +254,6 @@ extents = Vector2( 8.13271, 5.3509 )
 [node name="GameManager" type="Node2D"]
 position = Vector2( -2, 0 )
 script = ExtResource( 11 )
-RespawnPoint = ExtResource( 12 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 7 )
