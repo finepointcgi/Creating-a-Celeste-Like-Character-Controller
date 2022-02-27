@@ -1,7 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://platform_metroidvania asset pack v1.01/miscellaneous sprites/orb.png" type="Texture" id=1]
-[ext_resource path="res://Key.cs" type="Script" id=2]
+[ext_resource path="res://Items/Key.cs" type="Script" id=2]
+
 
 [sub_resource type="CircleShape2D" id=1]
 

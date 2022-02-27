@@ -19,18 +19,24 @@ public class Arrow : Node2D
     public override void _Process(float delta)
     {
         Position += Transform.x * delta * speed;
+        GD.Print(Position);
         lifeSpan -= delta;
         if(lifeSpan < 0){
+            GD.Print("queue free");
             QueueFree();
         }
     }
 
     private void _on_Area2D_body_entered(object body){
+        if(body is ArcherEnemy)
+            return;
         QueueFree();
         if(body is KinematicBody2D){
-            if(body is PlayerController){
-                PlayerController pc = body as PlayerController;
-                pc.TakeDamage();
+            if(body is ArcherEnemy){
+                if(body is PlayerController){
+                    PlayerController pc = body as PlayerController;
+                    pc.TakeDamage();
+                }
             }
         }
     }

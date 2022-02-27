@@ -20,8 +20,8 @@ public abstract class Spell : Node2D
     public abstract void SetUp(bool faceDirection);
     public abstract string GetSpellPath();
     public void DoDamage(object body, float damageAmount){
-        if(body is Enemy){
-            Enemy enemy = body as Enemy;
+        if(body is SlimeEnemy){
+            SlimeEnemy enemy = body as SlimeEnemy;
             enemy.TakeDamage(damageAmount);
         }
     }

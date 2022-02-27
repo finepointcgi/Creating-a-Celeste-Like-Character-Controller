@@ -49,9 +49,10 @@ public class PlayerController : KinematicBody2D
     public List<Key> Keys = new List<Key>();
     private PlayerState currentState;
     private bool jumping;
-    private bool pauseInput;
+    public bool pauseInput;
     private float damageTimer = .3f;
     private float damageTimerreset = .3f;
+    public float XP = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -104,7 +105,7 @@ public class PlayerController : KinematicBody2D
         InterfaceManager.UpdateHealth(MaxHealth, Health);
         processTimers(delta);
         
-        GD.Print(velocity);
+        //GD.Print(velocity);
         MoveAndSlide(velocity, Vector2.Up,false,4,0.785398f,true);
     }
 

@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://QuestElement.cs" type="Script" id=1]
+
+[node name="QuestElement" type="Control"]
+margin_right = 143.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+margin_bottom = 24.0
+text = "QuestName"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc" type="RichTextLabel" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -18.0
+text = "Desc"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -7,6 +7,7 @@ public class InterfaceManager : CanvasLayer
     public static ProgressBar ManaBar;
     public static ProgressBar HealthBar;
     public static TextureRect SpellTextureRect;
+    public static QuestInterfaceManager QuestInterfaceManager;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -15,7 +16,7 @@ public class InterfaceManager : CanvasLayer
         ManaBar = GetNode("MainInterface/ManaBar") as ProgressBar;
         HealthBar = GetNode("MainInterface/HealthBar") as ProgressBar;
         SpellTextureRect = GetNode("MainInterface/MagicSpellPannel/MagicSpellTexture") as TextureRect;
-        
+        QuestInterfaceManager = GetNode("QuestInterfaceManager") as QuestInterfaceManager;
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Spells/ice_shard/I5050-7.png" type="Texture" id=1]
-[ext_resource path="res://IceKnife.cs" type="Script" id=2]
+[ext_resource path="res://Spells/IceKnife.cs" type="Script" id=2]
 [ext_resource path="res://Spells/ice_shard/I5050-5.png" type="Texture" id=3]
 [ext_resource path="res://Spells/ice_shard/I5050-8.png" type="Texture" id=4]
 [ext_resource path="res://Spells/ice_shard/I5050-9.png" type="Texture" id=5]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Spells/ice_shard/I5050-11.png" type="Texture" id=10]
 [ext_resource path="res://Spells/ice_shard/I5050-2.png" type="Texture" id=11]
 [ext_resource path="res://Spells/ice_shard/I5050-3.png" type="Texture" id=12]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2.69495, 2.22506 )

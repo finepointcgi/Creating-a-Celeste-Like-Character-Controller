@@ -7,6 +7,7 @@ public class SlimeEnemy : KinematicBody2D
     // private int a = 2;
     // private string b = "text";
     Sprite sprite;
+    public int id = 1;
     private float health;
     RayCast2D bottomLeft;
     RayCast2D bottomRight;
@@ -64,6 +65,7 @@ public class SlimeEnemy : KinematicBody2D
     public void TakeDamage(float damageAmount){
         health -= damageAmount;
         if(health <= 0){
+            GameManager.QuestManager.updateQuest(this);
             QueueFree();
         }
     }

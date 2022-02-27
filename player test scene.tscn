@@ -1,27 +1,29 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://ArcherHero/Final/Normal Attack.png" type="Texture" id=1]
 [ext_resource path="res://ArcherHero/Final/Idle and running.png" type="Texture" id=2]
 [ext_resource path="res://platform_metroidvania asset pack v1.01/tiles and background_foreground/tileset.png" type="Texture" id=3]
-[ext_resource path="res://SpikeTrap.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ArcherEnemy.cs" type="Script" id=6]
-[ext_resource path="res://Arrow.tscn" type="PackedScene" id=7]
-[ext_resource path="res://DialougeManger.cs" type="Script" id=8]
+[ext_resource path="res://Environment/SpikeTrap.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Managers/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemy/ArcherEnemy.cs" type="Script" id=6]
+[ext_resource path="res://Enemy/Arrow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Managers/DialougeManger.cs" type="Script" id=8]
 [ext_resource path="res://platform_metroidvania asset pack v1.01/miscellaneous sprites/spikes.png" type="Texture" id=9]
-[ext_resource path="res://InterfaceManager.cs" type="Script" id=10]
-[ext_resource path="res://GameManager.cs" type="Script" id=11]
-[ext_resource path="res://RespawnPoint.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Managers/InterfaceManager.cs" type="Script" id=10]
+[ext_resource path="res://Managers/GameManager.cs" type="Script" id=11]
+[ext_resource path="res://Utilities/RespawnPoint.tscn" type="PackedScene" id=12]
 [ext_resource path="res://ArcherHero/Final/Idle and running_good.png" type="Texture" id=13]
-[ext_resource path="res://NPC.cs" type="Script" id=14]
-[ext_resource path="res://InterfaceSelection.tscn" type="PackedScene" id=15]
+[ext_resource path="res://NPC/NPC.cs" type="Script" id=14]
+[ext_resource path="res://Interface/InterfaceSelection.tscn" type="PackedScene" id=15]
 [ext_resource path="res://platform_metroidvania asset pack v1.01/miscellaneous sprites/stone.png" type="Texture" id=16]
-[ext_resource path="res://Platform.cs" type="Script" id=17]
-[ext_resource path="res://SlimeEnemy.tscn" type="PackedScene" id=18]
-[ext_resource path="res://MagicPotion.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Key.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Door.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Environment/Platform.cs" type="Script" id=17]
+[ext_resource path="res://Enemy/SlimeEnemy.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Items/MagicPotion.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Items/Key.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Environment/Door.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Spells/fireball_V_1_1/FB500-2.png" type="Texture" id=22]
+[ext_resource path="res://QuestElement.tscn" type="PackedScene" id=23]
+[ext_resource path="res://QuestInterfaceManager.cs" type="Script" id=24]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -358,7 +360,6 @@ __meta__ = {
 }
 
 [node name="MainInterface" type="Control" parent="InterfaceManager"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.187286
@@ -403,6 +404,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="QuestInterfaceManager" type="Control" parent="InterfaceManager"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -143.0
+margin_top = 108.0
+margin_bottom = -100.0
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+QuestInterfaceElement = ExtResource( 23 )
+
+[node name="QuestList" type="VBoxContainer" parent="InterfaceManager/QuestInterfaceManager"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InterfaceManager/QuestInterfaceManager"]
+margin_top = -21.9752
+margin_right = 143.0
+margin_bottom = 18.0248
+text = "Quests:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="NPC" type="KinematicBody2D" parent="."]
 position = Vector2( 136.278, 84.4802 )
 collision_layer = 2
@@ -411,11 +441,31 @@ script = ExtResource( 14 )
 __meta__ = {
 "_edit_group_": true
 }
+npcName = "Bob"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
 shape = SubResource( 24 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="NPC"]
+position = Vector2( -0.264832, -1.05947 )
+scale = Vector2( 0.490962, 0.490962 )
+frames = SubResource( 27 )
+animation = "Idle"
+
+[node name="NPC2" type="KinematicBody2D" parent="."]
+position = Vector2( 222.793, 69.7811 )
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true
+}
+npcName = "Mochi"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC2"]
+shape = SubResource( 24 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="NPC2"]
 position = Vector2( -0.264832, -1.05947 )
 scale = Vector2( 0.490962, 0.490962 )
 frames = SubResource( 27 )

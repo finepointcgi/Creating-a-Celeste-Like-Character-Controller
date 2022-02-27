@@ -9,6 +9,7 @@ public class DialougeManger : Control
     // private string b = "text";
 
     public List<NPCDialouge> npcDialouge;
+    public List<InterfaceSelectionObject> InterfaceSelectionObjects;
     [Export]
     public PackedScene InterfaceSelectableObject;
 
@@ -16,7 +17,7 @@ public class DialougeManger : Control
     private bool isDialougeUp;
     private int currentSelectionIndex = 0;
     public string DialougeHeader;
-
+    private NPCDialouge currentDialougeOpen;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -24,8 +25,10 @@ public class DialougeManger : Control
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public async override void _Process(float delta)
+    public async override void _PhysicsProcess(float delta)
     {
+        await ToSignal(GetTree(), "physics_frame");
+        
         if(GameManager.GlobalGameManager.GamePaused && isDialougeUp){
             if(Input.IsActionJustPressed("ui_left")){
                 foreach (var item in Selections)
@@ -48,18 +51,23 @@ public class DialougeManger : Control
                 }
                 Selections[currentSelectionIndex].SetSelected(true);
             }else if (Input.IsActionJustPressed("ui_accept")){
-                await ToSignal(GetTree(), "idle_frame");
-                dispayNextDialougeElement(Selections[currentSelectionIndex].interfaceSelectionObject.SelectionIndex);
+                InterfaceSelectionObject selectionObject = Selections[currentSelectionIndex].interfaceSelectionObject;
+                if(selectionObject.AcceptQuest)
+                    GameManager.QuestManager.AddActiveQuests(GameManager.QuestManager.AvalQuest.Where(x => x.Id == currentDialougeOpen.Quest).FirstOrDefault());
+                dispayNextDialougeElement(selectionObject.SelectionIndex);
             }
         }
     }
-    public void ShowDialougeElement(){
+    public async void ShowDialougeElement(){
         GetNode<Popup>("Popup").Popup_();
         GetNode<Label>("Popup/Label").Text = DialougeHeader;
-        WriteDialouge(npcDialouge[0]);
+        GameManager.Player.pauseInput = true;
+        WriteDialouge(npcDialouge[0]);        
+        await ToSignal(GetTree(), "idle_frame");
     }
 
     public void WriteDialouge(NPCDialouge dialouge){
+        currentDialougeOpen = dialouge;
         foreach (Node item in GetNode<Node>("Popup/HBoxContainer").GetChildren())
         {
             item.QueueFree();
@@ -69,7 +77,7 @@ public class DialougeManger : Control
         foreach (var item in dialouge.InterfaceSelectionObjects)
         {
             InterfaceSelection interfaceSelection = InterfaceSelectableObject.Instance() as InterfaceSelection;
-            interfaceSelection.interfaceSelectionObject = item;
+            interfaceSelection.interfaceSelectionObject = InterfaceSelectionObjects.Where(x => x.ID == item).FirstOrDefault();
             GetNode<HBoxContainer>("Popup/HBoxContainer").AddChild(interfaceSelection);
             Selections.Add(interfaceSelection);
             interfaceSelection.SetSelected(false);
@@ -80,10 +88,12 @@ public class DialougeManger : Control
         GameManager.GlobalGameManager.GamePaused = true;    
     }
 
-    private void shutdownDialouge(){
+    private async void shutdownDialouge(){
         GetNode<Popup>("Popup").Hide();
         GameManager.GlobalGameManager.GamePaused = false;
         isDialougeUp = false;
+        await ToSignal(GetTree(), "physics_frame");
+        GameManager.Player.pauseInput = false;
     }
 
     private void dispayNextDialougeElement(int index){
