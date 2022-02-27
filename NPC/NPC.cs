@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Linq;
+
 public class NPC : KinematicBody2D
 {
     // Declare member variables here. Examples:
@@ -42,17 +44,20 @@ public class NPC : KinematicBody2D
 
     public void setNPCDialouge(){
         List<Quest> activeQuest = GameManager.QuestManager.ActiveQuests;
+        InterfaceManager.dialougeManger.DialougeHeader = npcName;
         foreach (var item in activeQuest)
         {
             if(item.Completed){
-                InterfaceManager.dialougeManger.npcDialouge = item.FinishDialougeElement;
-                GameManager.QuestManager.RemoveActiveQuest(item);
-                item.QuestElement.QueueFree();
-                return;
+                if(nPCInterface.nPCDialouges.Any(x => x.Quest == item.Id)){
+                    InterfaceManager.dialougeManger.npcDialouge = item.FinishDialougeElement;
+                    GameManager.QuestManager.RemoveActiveQuest(item);
+                    item.QuestElement.QueueFree();
+                
+                    return;
+                }
             }
         }
         InterfaceManager.dialougeManger.npcDialouge = nPCInterface.nPCDialouges;
-        InterfaceManager.dialougeManger.DialougeHeader = npcName;
         InterfaceManager.dialougeManger.InterfaceSelectionObjects = nPCInterface.InterfaceSelections;
     }
 
