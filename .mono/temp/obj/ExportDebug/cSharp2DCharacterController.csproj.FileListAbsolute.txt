@@ -1,0 +1,11 @@
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\bin\ExportDebug\cSharp2DCharacterController.dll
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\bin\ExportDebug\cSharp2DCharacterController.pdb
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\bin\ExportDebug\JsonKnownTypes.dll
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\bin\ExportDebug\Newtonsoft.Json.dll
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\ExportDebug\cSharp2DCharacterController.csprojAssemblyReference.cache
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\ExportDebug\cSharp2DCharacterController.AssemblyInfoInputs.cache
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\ExportDebug\cSharp2DCharacterController.AssemblyInfo.cs
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\ExportDebug\cSharp2DCharacterController.csproj.CoreCompileInputs.cache
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\ExportDebug\cSharp2DCharacterController.csproj.CopyComplete
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\ExportDebug\cSharp2DCharacterController.dll
+C:\Users\animeman\Documents\Celest like tutorial\.mono\temp\obj\ExportDebug\cSharp2DCharacterController.pdb
